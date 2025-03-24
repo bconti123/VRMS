@@ -181,11 +181,7 @@ div.editable-field {
 }
 
 .edit-meeting-modal {
-  width: 92%;
-  display: none;
-  background-color: white;
-  opacity: 1;
-  &.active {
+
     position: absolute;
     height: 100%;
     width: 100%;
@@ -195,8 +191,26 @@ div.editable-field {
     display: block;
     background-color: rgba(255, 255, 255, 0.763);
     z-index: 3;
-  }
+
 }
+
+// .edit-meeting-modal {
+//   width: 92%;
+//   display: none;
+//   background-color: white;
+//   opacity: 1;
+//   &.active {
+//     position: absolute;
+//     height: 100%;
+//     width: 100%;
+//     padding-left: 8px;
+//     padding-right: 50px;
+//     top: 24px;
+//     display: block;
+//     background-color: rgba(255, 255, 255, 0.763);
+//     z-index: 3;
+//   }
+// }
 
 .meeting-cancel-button {
   background-color: transparent;

@@ -9,7 +9,7 @@ import TitledBox from '../parts/boxes/TitledBox';
 import { ReactComponent as EditIcon } from '../../svg/Icon_Edit.svg';
 import { ReactComponent as PlusIcon } from '../../svg/PlusIcon.svg';
 
-import { Typography, Box } from '@mui/material';
+import { Typography, Box, Modal } from '@mui/material';
 
 // Need to hold user state to check which type of user they are and conditionally render editing fields in this component
 // for user level block access to all except for the ones checked
@@ -76,19 +76,40 @@ const EditProject = ({
     }
   }, [projectToEdit, recurringEvents, setREvents]);
 
+  console.debug('selectedEvent', selectedEvent);
+
   return (
     <Box sx={{ px: 0.5 }}>
-      <div className={`edit-meeting-modal ${selectedEvent ? 'active' : ''}`}>
-        <EditMeetingTimes
-          projectToEdit={projectToEdit}
-          selectedEvent={selectedEvent}
-          setEventAlert={setEventAlert}
-          setSelectedEvent={setSelectedEvent}
-          deleteRecurringEvent={deleteRecurringEvent}
-          updateRecurringEvent={updateRecurringEvent}
-        />
-      </div>
-      <div className={`edit-meeting-modal ${isCreateNew ? 'active' : ''}`}>
+      {/* Modal needs change html to mui */}
+      {/* <div className={`edit-meeting-modal ${selectedEvent ? 'active' : ''}`}> */}
+
+      <Modal
+        open={!!selectedEvent}
+        onClose={() => setSelectedEvent(null)}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box className="edit-meeting-modal">
+          <EditMeetingTimes
+            projectToEdit={projectToEdit}
+            selectedEvent={selectedEvent}
+            setEventAlert={setEventAlert}
+            setSelectedEvent={setSelectedEvent}
+            deleteRecurringEvent={deleteRecurringEvent}
+            updateRecurringEvent={updateRecurringEvent}
+          />
+        </Box>
+      </Modal>
+      {/* </div> */}
+
+      {/* <div className={`edit-meeting-modal ${isCreateNew ? 'active' : ''}`}> */}
+        <Modal
+          open={isCreateNew}
+          onClose={() => setIsCreateNew(false)}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box className="edit-meeting-modal">
         <CreateNewEvent
           createNewRecurringEvent={createNewRecurringEvent}
           projectToEdit={projectToEdit}
@@ -97,7 +118,9 @@ const EditProject = ({
           setEventAlert={setEventAlert}
           setIsCreateNew={setIsCreateNew}
         />
-      </div>
+          </Box>
+        </Modal>
+      {/* </div> */}
       <ProjectForm
         arr={[...simpleInputs, ...additionalInputsForEdit]}
         formData={formData}
@@ -106,7 +129,8 @@ const EditProject = ({
         setFormData={setFormData}
       />
 
-      <TitledBox title="Recurring Events"
+      <TitledBox
+        title="Recurring Events"
         badge={
           <Box
             sx={{
@@ -127,6 +151,7 @@ const EditProject = ({
           </Box>
         }
       >
+        {/* Manually Edit Events List here... Need to change html to mui */}
         <div className="event-list">
           <h2 className="event-alert">{eventAlert}</h2>
           <ul>
@@ -148,15 +173,18 @@ const EditProject = ({
           </ul>
         </div>
       </TitledBox>
-
+      {/* Manually Edit Events Need change HTML to MUI */}
       <TitledBox title="Manually Edit Events Checkin">
         <div className="event-list">
           <h2 className="event-alert">{eventAlert}</h2>
           <ul>
             {regularEventsState.map((event, index) => (
-
               // eslint-dis able-next-line no-underscore-dangle
-              <RegularEvent event={event} key={event._id} updateRegularEvent={updateRegularEvent} />
+              <RegularEvent
+                event={event}
+                key={event._id}
+                updateRegularEvent={updateRegularEvent}
+              />
             ))}
           </ul>
         </div>
@@ -164,21 +192,31 @@ const EditProject = ({
     </Box>
   );
 };
-
+// Manually Edit Events List here... Need to change html to mui
 function RegularEvent({ event, updateRegularEvent }) {
   return (
     <li key={`${event.event_id}`}>
-      <button type="button" onClick={async () => updateRegularEvent({ checkInReady: !event.checkInReady }, event.event_id)}>
+      <button
+        type="button"
+        onClick={async () =>
+          updateRegularEvent(
+            { checkInReady: !event.checkInReady },
+            event.event_id
+          )
+        }
+      >
         <div>{event.name}</div>
         <div className="event-list-details">
-          {`${event.dayOfTheWeek}, ${event.startTime} - ${event.endTime}; ${event.eventType}`} {`${new Date(event.raw.startTime).toLocaleDateString()}`}
+          {`${event.dayOfTheWeek}, ${event.startTime} - ${event.endTime}; ${event.eventType}`}{' '}
+          {`${new Date(event.raw.startTime).toLocaleDateString()}`}
         </div>
-        <div className="event-list-description">Is this event available for check in now?: <strong>{`${event.checkInReady ? "Yes" : "No"}`}</strong></div>
+        <div className="event-list-description">
+          Is this event available for check in now?:{' '}
+          <strong>{`${event.checkInReady ? 'Yes' : 'No'}`}</strong>
+        </div>
       </button>
     </li>
-  )
+  );
 }
-
-
 
 export default EditProject;
