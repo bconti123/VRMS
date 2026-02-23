@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { Box, CircularProgress, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { isValidToken } from '../../services/user.service';
 import { authLevelRedirect } from '../../utils/authUtils';
-import { Box, CircularProgress, Typography } from '@mui/material';
 
 import '../../sass/MagicLink.scss';
 import useAuth from '../../hooks/useAuth';
@@ -62,9 +62,7 @@ const HandleAuth = (props) => {
       {!isLoaded ? (
         <CircularProgress />
       ) : (
-        <Typography variant="p">
-          Sorry, the link is not valid anymore.
-        </Typography>
+        <Typography variant="p">Sorry, the link is not valid anymore.</Typography>
       )}
       {auth?.user && <Redirect to={loginRedirect} /> /* Redirect to /welcome */}
     </Box>

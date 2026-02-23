@@ -1,7 +1,7 @@
+import { Box, Button, Link, Tooltip, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import TitledBox from './TitledBox';
-import { Box, Typography, Tooltip, Button, Link } from '@mui/material';
 import InfoIcon from '../../../svg/InfoIcon.svg?react';
+import TitledBox from './TitledBox';
 
 /**
  * A specialized TitledBox component for iframe-related content, with an expandable accordion and "Add New Event" badge.
@@ -13,14 +13,13 @@ import InfoIcon from '../../../svg/InfoIcon.svg?react';
 export default function TitledBoxIFrame({ setIsCreateNew, projectName }) {
   const [formState, setFormState] = useState('hidden');
 
-  const onOffBoardingLogLink =
-    'https://github.com/hackforla/product-management/issues/391';
+  const onOffBoardingLogLink = 'https://github.com/hackforla/product-management/issues/391';
 
   const onboardingIframeSrc = `https://docs.google.com/forms/d/e/1FAIpQLSdKbq_tO0C1nLMz4XzdmFFzt3GufTs35xy83MieQj-fUlj6vA/viewform?usp=pp_url&entry.872097547=${encodeForGoogleForms(
-    projectName
+    projectName,
   )}&embedded=true`;
   const offboardingIframeSrc = `https://docs.google.com/forms/d/e/1FAIpQLSftp0txQkJWIwbxFTD4-w5rrq6kI8L06sHw0dvs_CmOD-4PHg/viewform?usp=pp_url&entry.1212778706=${encodeForGoogleForms(
-    projectName
+    projectName,
   )}&embedded=true`;
 
   const iframeWidth = 380;

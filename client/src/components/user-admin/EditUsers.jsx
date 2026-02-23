@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
 import {
-  Grid,
-  FormGroup,
-  FormControlLabel,
-  Switch,
   Button,
-  Typography,
   Container,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  Grid,
+  InputLabel,
   List,
   ListItem,
   ListItemText,
-  Select,
   MenuItem,
-  FormControl,
-  InputLabel,
+  Select,
+  Switch,
+  Typography,
 } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import '../../sass/UserAdmin.scss';
 import useAuth from '../../hooks/useAuth';
 
@@ -49,9 +49,7 @@ const EditUsers = ({
     setUserManagedProjects(userToEdit.managedProjects);
   }, [userToEdit]);
 
-  const userProjectsToDisplay = activeProjects.filter((item) =>
-    userProjects.includes(item[0])
-  );
+  const userProjectsToDisplay = activeProjects.filter((item) => userProjects.includes(item[0]));
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -73,14 +71,12 @@ const EditUsers = ({
 
   const handleRemoveProject = (projectToRemove) => {
     if (!isSuperAdmin && userManagedProjects.length > 0) {
-      const newProjects = userManagedProjects.filter(
-        (p) => p !== projectToRemove
-      );
+      const newProjects = userManagedProjects.filter((p) => p !== projectToRemove);
       updateUserDb(userToEdit, projectToRemove, 'remove');
       setUserManagedProjects(newProjects);
     }
   };
-  
+
   const handleSetIsActive = () => {
     if (!isSuperAdmin) {
       setIsActive(!isActive);
@@ -107,11 +103,7 @@ const EditUsers = ({
         <FormControlLabel
           sx={{ marginLeft: 1 }}
           control={
-            <Switch
-              checked={isActive}
-              onChange={handleSetIsActive}
-              disabled={isSuperAdmin}
-            />
+            <Switch checked={isActive} onChange={handleSetIsActive} disabled={isSuperAdmin} />
           }
           label={isActive.toString()}
         />
@@ -127,7 +119,10 @@ const EditUsers = ({
               checked={isAdmin || isSuperAdmin}
               onChange={handleSetAccessLevel}
               disabled={isSuperAdmin || userToEdit._id === auth?.user._id}
-              sx={{ cursor: (isSuperAdmin || userToEdit._id === auth?.user._id) ? "not-allowed" : "pointer" }}
+              sx={{
+                cursor:
+                  isSuperAdmin || userToEdit._id === auth?.user._id ? 'not-allowed' : 'pointer',
+              }}
             />
           }
           label={isAdmin || isSuperAdmin ? 'Yes' : 'No'}
@@ -182,11 +177,7 @@ const EditUsers = ({
           Add project
         </Button>
       </FormControl>
-      <Button
-        variant="outlined"
-        onClick={backToSearch}
-        style={{ marginTop: '1rem' }}
-      >
+      <Button variant="outlined" onClick={backToSearch} style={{ marginTop: '1rem' }}>
         Back to search
       </Button>
     </Container>

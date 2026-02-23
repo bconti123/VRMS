@@ -1,15 +1,15 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
 const timeTrackerSchema = mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
   },
   project: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Project",
+    ref: 'Project',
   },
   category: { type: String }, // picklist with 4 options: Development, Design/UX, Product/Project Management, Other
   notes: { type: String },
@@ -29,6 +29,6 @@ timeTrackerSchema.methods.serialize = function () {
   };
 };
 
-const TimeTracker = mongoose.model("TimeTracker", timeTrackerSchema);
+const TimeTracker = mongoose.model('TimeTracker', timeTrackerSchema);
 
 module.exports = { TimeTracker };

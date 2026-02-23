@@ -1,9 +1,9 @@
-import React from "react";
-import LeaderBoard from "./Leaderboard";
-import { render } from "@testing-library/react";
-import { test, expect } from 'vitest';
+import { render } from '@testing-library/react';
+import React from 'react';
+import { expect, test } from 'vitest';
+import LeaderBoard from './Leaderboard';
 
-test("renders without crashing", () => {
+test('renders without crashing', () => {
   const { container } = render(<LeaderBoard />);
   expect(container).toMatchSnapshot();
 });

@@ -1,4 +1,4 @@
-import { REACT_APP_CUSTOM_REQUEST_HEADER as headerToSend} from "../utils/globalSettings";
+import { REACT_APP_CUSTOM_REQUEST_HEADER as headerToSend } from '../utils/globalSettings';
 
 const ProjectTeamMemberApi = {
   /**
@@ -7,20 +7,16 @@ const ProjectTeamMemberApi = {
    * other optional parameters, see projectTeamMember model
    */
   postMember(member) {
-    console.log({member});
+    console.log({ member });
     return fetch('/api/projectteammembers', {
-      method: 'POST', 
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        "x-customrequired-header": headerToSend
+        'Content-Type': 'application/json',
+        'x-customrequired-header': headerToSend,
       },
-      body: JSON.stringify(member)
-    })
-      .then((res) => (!res.ok) 
-        ? res.json().then((e) => Promise.reject(e)) 
-        : res.json()
-      )
-  }
-}
+      body: JSON.stringify(member),
+    }).then((res) => (!res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()));
+  },
+};
 
 export default ProjectTeamMemberApi;

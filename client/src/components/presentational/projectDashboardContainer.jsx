@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import AttendeeTable from "../dashboard/AttendeeTable";
-import RosterTable from "../dashboard/RosterTable";
+import AttendeeTable from '../dashboard/AttendeeTable';
+import RosterTable from '../dashboard/RosterTable';
 
 const projectDashboardContainer = (props) => {
   return (

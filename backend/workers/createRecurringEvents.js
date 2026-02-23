@@ -125,7 +125,7 @@ const adjustToLosAngelesTime = (eventDate) => {
     .formatToParts(tempDate)
     .find((part) => part.type === 'timeZoneName')
     .value.slice(3);
-  const offsetMinutes = parseInt(losAngelesOffsetHours, 10) * 60;
+  const offsetMinutes = Number.parseInt(losAngelesOffsetHours, 10) * 60;
   return new Date(tempDate.getTime() + offsetMinutes * 60000);
 };
 

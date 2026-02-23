@@ -1,9 +1,4 @@
-import {
-  HEADERS,
-  CHECK_USER,
-  SIGN_IN,
-  AUTH_VERIFY_SIGN_IN,
-} from '../utils/endpoints';
+import { AUTH_VERIFY_SIGN_IN, CHECK_USER, HEADERS, SIGN_IN } from '../utils/endpoints';
 
 /**
  * Method sent request to the backend to check if user exist in the DB

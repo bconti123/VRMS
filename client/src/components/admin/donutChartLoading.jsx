@@ -1,5 +1,5 @@
+import { Box, CircularProgress, Container, Typography } from '@mui/material';
 import React from 'react';
-import { Box, Container, CircularProgress, Typography } from '@mui/material';
 import '../../sass/Dashboard.scss';
 
 const DonutChartLoading = (props) => (

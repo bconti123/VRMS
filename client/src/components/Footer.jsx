@@ -1,9 +1,9 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
+import { Box, Button, Typography } from '@mui/material';
 import pkg from '../../package.json';
 import useAuth from '../hooks/useAuth';
-import { Button, Box, Typography } from '@mui/material';
 
 import '../sass/Footer.scss';
 

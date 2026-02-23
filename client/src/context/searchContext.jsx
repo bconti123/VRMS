@@ -7,14 +7,20 @@ export const SearchTextProvider = ({ children }) => {
   const [searchResultType, setSearchResultType] = useState('name');
   const [userType, setUserType] = useState('admin');
   const [isProjectLead, setIsProjectLead] = useState(false);
-  
+
   return (
-    <SearchTextContext.Provider value={{ 
-      searchText, setSearchText, 
-      searchResultType, setSearchResultType,
-      userType, setUserType,
-      isProjectLead, setIsProjectLead
-    }}>
+    <SearchTextContext.Provider
+      value={{
+        searchText,
+        setSearchText,
+        searchResultType,
+        setSearchResultType,
+        userType,
+        setUserType,
+        isProjectLead,
+        setIsProjectLead,
+      }}
+    >
       {children}
     </SearchTextContext.Provider>
   );

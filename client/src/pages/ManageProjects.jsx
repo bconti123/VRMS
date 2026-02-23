@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-import SelectProject from '../components/manageProjects/selectProject';
-import EditProject from '../components/manageProjects/editProject';
 import ProjectApiService from '../api/ProjectApiService';
 import RecurringEventsApiService from '../api/RecurringEventsApiService';
+import EditProject from '../components/manageProjects/editProject';
+import SelectProject from '../components/manageProjects/selectProject';
 import Loading from '../svg/22.gif';
 import '../sass/ManageProjects.scss';
-import EventsApiService_ from '../api/EventsApiService';
 import { Box } from '@mui/material';
+import EventsApiService_ from '../api/EventsApiService';
 
 const PAGES = Object.freeze({
   selectProject: 'selectProject',
@@ -17,25 +17,25 @@ const PAGES = Object.freeze({
 
 // Added styles for MUI components
 const loadingStyle = {
-  "display": "none",
-  "position": "absolute",
-  "display": "flex",
-  "flexDirection": "row",
-  "alignItems": "center",
-  "justifyContent": "center",
-  "zIndex": 1,
-  "top": 0,
-  "left": 0,
-  "right": 0,
-  "backgroundColor": "white",
-  "height": '100%',
-  "opacity": 0.6,
-}
+  display: 'none',
+  position: 'absolute',
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'center',
+  zIndex: 1,
+  top: 0,
+  left: 0,
+  right: 0,
+  backgroundColor: 'white',
+  height: '100%',
+  opacity: 0.6,
+};
 
 const noStyle = {
-  "opacity": 0,
-  "display": "none",
-}
+  opacity: 0,
+  display: 'none',
+};
 
 const ManageProjects = ({ auth }) => {
   const { projectId } = useParams();
@@ -79,11 +79,11 @@ const ManageProjects = ({ auth }) => {
         // eslint-disable-next-line no-underscore-dangle
         projectToEdit._id,
         fieldName,
-        fieldValue
+        fieldValue,
       );
       fetchProjects();
     },
-    [projectApiService, fetchProjects, projectToEdit]
+    [projectApiService, fetchProjects, projectToEdit],
   );
 
   const createNewRecurringEvent = useCallback(
@@ -91,7 +91,7 @@ const ManageProjects = ({ auth }) => {
       await recurringEventsApiService.createNewRecurringEvent(eventToCreate);
       fetchRecurringEvents();
     },
-    [recurringEventsApiService, fetchRecurringEvents]
+    [recurringEventsApiService, fetchRecurringEvents],
   );
 
   const deleteRecurringEvent = useCallback(
@@ -99,18 +99,15 @@ const ManageProjects = ({ auth }) => {
       await recurringEventsApiService.deleteRecurringEvent(recurringEventID);
       fetchRecurringEvents();
     },
-    [recurringEventsApiService, fetchRecurringEvents]
+    [recurringEventsApiService, fetchRecurringEvents],
   );
 
   const updateRecurringEvent = useCallback(
     async (eventToUpdate, recurringEventID) => {
-      await recurringEventsApiService.updateRecurringEvent(
-        eventToUpdate,
-        recurringEventID
-      );
+      await recurringEventsApiService.updateRecurringEvent(eventToUpdate, recurringEventID);
       fetchRecurringEvents();
     },
-    [recurringEventsApiService, fetchRecurringEvents]
+    [recurringEventsApiService, fetchRecurringEvents],
   );
 
   const updateRegularEvent = useCallback(
@@ -118,7 +115,7 @@ const ManageProjects = ({ auth }) => {
       await EventsApiService.updateEvent(eventToUpdate, eventId);
       fetchRegularEvents();
     },
-    [fetchRegularEvents, EventsApiService]
+    [fetchRegularEvents, EventsApiService],
   );
 
   useEffect(() => {
@@ -127,8 +124,8 @@ const ManageProjects = ({ auth }) => {
       setProjectToEdit(
         projects.find(
           // eslint-disable-next-line no-underscore-dangle
-          (proj) => proj._id === projectId
-        )
+          (proj) => proj._id === projectId,
+        ),
       );
       setComponentToDisplay(PAGES.editProjectInfo);
     }
@@ -161,11 +158,7 @@ const ManageProjects = ({ auth }) => {
     // We are not using the SelectProject component anymore. Will remove soon.
     default:
       displayedComponent = (
-        <SelectProject
-          accessLevel={user?.accessLevel}
-          projects={projects}
-          user={user}
-        />
+        <SelectProject accessLevel={user?.accessLevel} projects={projects} user={user} />
       );
       break;
   }
@@ -173,10 +166,10 @@ const ManageProjects = ({ auth }) => {
     <>
       <Box
         sx={eventsLoading || projectsLoading ? loadingStyle : noStyle}
-        component='span'
-        display='inline'
+        component="span"
+        display="inline"
       >
-        <Box component='img' src={Loading} alt="Logo" />
+        <Box component="img" src={Loading} alt="Logo" />
       </Box>
       {displayedComponent}
     </>

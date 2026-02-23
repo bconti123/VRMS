@@ -1,9 +1,9 @@
+import { Box, Button, FormControl, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-import { checkUser, checkAuth } from '../../services/user.service';
+import { checkAuth, checkUser } from '../../services/user.service';
 import { authLevelRedirect } from '../../utils/authUtils';
-import { Typography, Button, FormControl, Box, TextField } from '@mui/material';
 
 import useAuth from '../../hooks/useAuth';
 import '../../sass/AdminLogin.scss';
@@ -54,9 +54,7 @@ const Auth = () => {
           userData.user.accessLevel === USER &&
           userData.user.managedProjects.length === 0
         ) {
-          showError(
-            "You don't have the correct access level to view the dashboard"
-          );
+          showError("You don't have the correct access level to view the dashboard");
           return;
         }
 
@@ -64,14 +62,10 @@ const Auth = () => {
         if (isAuth) {
           history.push('/emailsent');
         } else {
-          showError(
-            'We don’t recognize your email address. Please, create an account.'
-          );
+          showError('We don’t recognize your email address. Please, create an account.');
         }
       } else {
-        showError(
-          'We don’t recognize your email address. Please, create an account.'
-        );
+        showError('We don’t recognize your email address. Please, create an account.');
       }
     }
   };
@@ -105,11 +99,7 @@ const Auth = () => {
             Welcome Back!
           </Typography>
         </div>
-        <form
-          onSubmit={handleLogin}
-          className="form-check-in"
-          autoComplete="off"
-        >
+        <form onSubmit={handleLogin} className="form-check-in" autoComplete="off">
           <FormControl>
             <div className="form-row">
               <div className="form-input-text">
@@ -133,10 +123,7 @@ const Auth = () => {
           </FormControl>
         </form>
 
-        <div
-          className="adminlogin-warning"
-          style={{ visibility: isError ? 'visible' : 'hidden' }}
-        >
+        <div className="adminlogin-warning" style={{ visibility: isError ? 'visible' : 'hidden' }}>
           {errorMessage}
         </div>
 

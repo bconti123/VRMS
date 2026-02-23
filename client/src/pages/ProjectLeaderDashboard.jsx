@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import styles from "../sass/ProjectLeaderDashboard.module.scss";
-import UpcomingEvent from "../components/presentational/upcomingEvent";
-import ProjectDashboardContainer from "../components/presentational/projectDashboardContainer";
-import DashboardButton from "../components/dashboard/DashboardButton";
-import ProjectInfo from "../components/dashboard/ProjectInfo";
-import { REACT_APP_CUSTOM_REQUEST_HEADER as headerToSend} from "../utils/globalSettings";
+import React, { useEffect, useState } from 'react';
+import DashboardButton from '../components/dashboard/DashboardButton';
+import ProjectInfo from '../components/dashboard/ProjectInfo';
+import ProjectDashboardContainer from '../components/presentational/projectDashboardContainer';
+import UpcomingEvent from '../components/presentational/upcomingEvent';
+import styles from '../sass/ProjectLeaderDashboard.module.scss';
+import { REACT_APP_CUSTOM_REQUEST_HEADER as headerToSend } from '../utils/globalSettings';
 
-import "../sass/Dashboard.scss";
+import '../sass/Dashboard.scss';
 
-import AddTeamMember from "../components/dashboard/AddTeamMember";
+import AddTeamMember from '../components/dashboard/AddTeamMember';
 const ProjectLeaderDashboard = () => {
   const [isCheckInReady, setIsCheckInReady] = useState();
   const [nextEvent, setNextEvent] = useState([]);
@@ -18,18 +18,18 @@ const ProjectLeaderDashboard = () => {
   const [attendeeOrRoster, setAttendeeOrRoster] = useState(true);
   const [forceRerender, setForceRerender] = useState(true);
   const [isError, setIsError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
-  const [rosterProjectId, setRosterProjectId] = useState("");
+  const [rosterProjectId, setRosterProjectId] = useState('');
 
   async function setCheckInReady(e, nextEventId) {
     e.preventDefault();
     try {
       await fetch(`/api/events/${nextEventId}`, {
-        method: "PATCH",
+        method: 'PATCH',
         headers: {
-          "Content-Type": "application/json",
-          "x-customrequired-header": headerToSend
+          'Content-Type': 'application/json',
+          'x-customrequired-header': headerToSend,
         },
       }).then((response) => {
         if (response.ok) {
@@ -50,12 +50,12 @@ const ProjectLeaderDashboard = () => {
     setIsError(false);
     setIsSuccess(false);
 
-    if (email === "") {
+    if (email === '') {
       setIsError(true);
       setErrorMessage("Please don't leave the field blank");
-    } else if (!email.includes("@") || !email.includes(".")) {
+    } else if (!email.includes('@') || !email.includes('.')) {
       setIsError(true);
-      setErrorMessage("Please format the email address correctly");
+      setErrorMessage('Please format the email address correctly');
     } else {
       await addToRoster(email);
       await setForceRerender(!forceRerender);
@@ -64,17 +64,16 @@ const ProjectLeaderDashboard = () => {
 
   async function addToRoster(email) {
     try {
-      return await fetch("/api/checkuser", {
-        method: "POST",
+      return await fetch('/api/checkuser', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
-          "x-customrequired-header": headerToSend
+          'Content-Type': 'application/json',
+          'x-customrequired-header': headerToSend,
         },
         body: JSON.stringify({ email }),
       })
         .then((res) => {
           if (res.ok) {
-
             return res.json();
           }
           throw new Error(res.statusText);
@@ -82,7 +81,7 @@ const ProjectLeaderDashboard = () => {
         .then((response) => {
           if (response === false) {
             setIsError(true);
-            setErrorMessage("Email not found");
+            setErrorMessage('Email not found');
             return response;
           } else {
             return response;
@@ -106,11 +105,12 @@ const ProjectLeaderDashboard = () => {
   async function checkIfOnRoster(user) {
     try {
       const onTeam = await fetch(
-        `/api/projectteammembers/project/${project.projectId._id}/${user._id}`, {
-        headers: {
-          "x-customrequired-header": headerToSend
-        }
-      }
+        `/api/projectteammembers/project/${project.projectId._id}/${user._id}`,
+        {
+          headers: {
+            'x-customrequired-header': headerToSend,
+          },
+        },
       );
       const onTeamJson = await onTeam.json();
 
@@ -118,7 +118,7 @@ const ProjectLeaderDashboard = () => {
         addMember(user);
       } else {
         setIsError(true);
-        setErrorMessage("Already on roster");
+        setErrorMessage('Already on roster');
       }
     } catch (error) {
       console.log(error);
@@ -133,11 +133,11 @@ const ProjectLeaderDashboard = () => {
     };
 
     try {
-      return await fetch("/api/projectteammembers", {
-        method: "POST",
+      return await fetch('/api/projectteammembers', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
-          "x-customrequired-header": headerToSend
+          'Content-Type': 'application/json',
+          'x-customrequired-header': headerToSend,
         },
         body: JSON.stringify(parameters),
       })
@@ -158,11 +158,12 @@ const ProjectLeaderDashboard = () => {
     async function getProjectFromUserId() {
       try {
         const project = await fetch(
-          "/api/projectteammembers/projectowner/5e2790b06dc5b4ed0bc1df56", {
-          headers: {
-            "x-customrequired-header": headerToSend
-          }
-        }
+          '/api/projectteammembers/projectowner/5e2790b06dc5b4ed0bc1df56',
+          {
+            headers: {
+              'x-customrequired-header': headerToSend,
+            },
+          },
         );
         const projectJson = await project.json();
         setProject(projectJson);
@@ -171,7 +172,7 @@ const ProjectLeaderDashboard = () => {
       }
     }
 
-    getProjectFromUserId() // getDashboardInfo
+    getProjectFromUserId(); // getDashboardInfo
   }, []);
 
   useEffect(() => {
@@ -181,8 +182,8 @@ const ProjectLeaderDashboard = () => {
           const id = nextEvent[0]._id;
           const attendees = await fetch(`/api/checkins/findEvent/${id}`, {
             headers: {
-              "x-customrequired-header": headerToSend
-            }
+              'x-customrequired-header': headerToSend,
+            },
           });
           const attendeesJson = await attendees.json();
           setAttendees(attendeesJson);
@@ -191,7 +192,7 @@ const ProjectLeaderDashboard = () => {
         console.log(error);
       }
     }
-    
+
     getAttendees();
   }, [nextEvent]);
 
@@ -199,13 +200,11 @@ const ProjectLeaderDashboard = () => {
     async function getRoster() {
       try {
         if (project && project.projectId) {
-          const roster = await fetch(
-            `/api/projectteammembers/${project.projectId._id}`, {
+          const roster = await fetch(`/api/projectteammembers/${project.projectId._id}`, {
             headers: {
-              "x-customrequired-header": headerToSend
-            }
-          }
-          );
+              'x-customrequired-header': headerToSend,
+            },
+          });
           const rosterJson = await roster.json();
           // temporary function that fixes outdated data
           rosterJson.forEach((item) => {
@@ -216,14 +215,14 @@ const ProjectLeaderDashboard = () => {
             }
           });
           setRoster(rosterJson);
-  
+
           setRosterProjectId(project.projectId.googleDriveId);
         }
       } catch (error) {
         console.log(error);
       }
     }
-    
+
     getRoster();
   }, [project, forceRerender]);
 
@@ -232,13 +231,11 @@ const ProjectLeaderDashboard = () => {
       // event id temporarily hard coded so actual check in data would be listed
       try {
         if (project && project.projectId) {
-          const events = await fetch(
-            `/api/events/nexteventbyproject/${project.projectId._id}`, {
+          const events = await fetch(`/api/events/nexteventbyproject/${project.projectId._id}`, {
             headers: {
-              "x-customrequired-header": headerToSend
-            }
-          }
-          );
+              'x-customrequired-header': headerToSend,
+            },
+          });
           const eventsJson = await events.json();
           setIsCheckInReady(eventsJson.checkInReady);
           setNextEvent([eventsJson]);
@@ -247,7 +244,7 @@ const ProjectLeaderDashboard = () => {
         console.log(err);
       }
     }
-    
+
     getNextEvent();
   }, [project]);
 
@@ -259,9 +256,7 @@ const ProjectLeaderDashboard = () => {
 
           <div className="dashboard-header flex">
             <div className="active-event-dot"></div>
-            <p className="dashboard-header-text-small">
-              You have an event going on!
-            </p>
+            <p className="dashboard-header-text-small">You have an event going on!</p>
           </div>
 
           <UpcomingEvent
@@ -279,9 +274,7 @@ const ProjectLeaderDashboard = () => {
 
           <div className="dashboard-chart-container">
             <button
-              className={`tab-selector ${
-                attendeeOrRoster ? "tab-selected" : null
-              }`}
+              className={`tab-selector ${attendeeOrRoster ? 'tab-selected' : null}`}
               onClick={() => {
                 changeTable(true);
               }}
@@ -289,9 +282,7 @@ const ProjectLeaderDashboard = () => {
               ATTENDEES
             </button>
             <button
-              className={`tab-selector ${
-                !attendeeOrRoster ? "tab-selected" : null
-              }`}
+              className={`tab-selector ${!attendeeOrRoster ? 'tab-selected' : null}`}
               onClick={() => {
                 changeTable(false);
               }}
@@ -300,7 +291,7 @@ const ProjectLeaderDashboard = () => {
             </button>
           </div>
 
-          {isCheckInReady &&
+          {isCheckInReady && (
             <>
               {attendees.length > 0 && roster.length > 0 && (
                 <ProjectDashboardContainer
@@ -315,19 +306,16 @@ const ProjectLeaderDashboard = () => {
               )}
 
               <div
-                className={[
-                  "dashboard-header",
-                  styles.dashboardHeaderFlex,
-                ].join(" ")}
-                style={{ marginBottom: ".5rem" }}
+                className={['dashboard-header', styles.dashboardHeaderFlex].join(' ')}
+                style={{ marginBottom: '.5rem' }}
               >
                 <p className={styles.dashboardHeadingProjectLeader}>
-                  {attendeeOrRoster ? "Meeting Participants" : "Team Roster"}
+                  {attendeeOrRoster ? 'Meeting Participants' : 'Team Roster'}
                 </p>
                 <DashboardButton>Download .csv</DashboardButton>
               </div>
             </>
-          }
+          )}
         </div>
       )}
     </div>

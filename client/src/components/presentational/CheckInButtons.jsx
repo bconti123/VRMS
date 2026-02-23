@@ -1,6 +1,6 @@
+import Button from '@mui/material/Button';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from '@mui/material/Button';
 
 const CheckInButtons = (props) => {
   return (
@@ -10,7 +10,7 @@ const CheckInButtons = (props) => {
         to={`/checkIn/returningUser?eventId=${props.event}`}
         disabled={props.disabled}
         variant="outlined"
-        sx={{ mb: 1}}
+        sx={{ mb: 1 }}
       >
         CHECK IN AS RETURNING USER
       </Button>
@@ -23,11 +23,7 @@ const CheckInButtons = (props) => {
       >
         CHECK IN AS NEW USER
       </Button>
-      <Button
-        component={Link}
-        to={`/newProfile`}
-        variant="outlined"
-      >
+      <Button component={Link} to={`/newProfile`} variant="outlined">
         CREATE A NEW PROFILE
       </Button>
     </>

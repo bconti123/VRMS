@@ -5,13 +5,7 @@ import { default as palette, uiKitColors } from './palette';
 let theme = createTheme({
   palette,
   typography: {
-    fontFamily: [
-      'Source Sans Pro',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-    ].join(','),
+    fontFamily: ['Source Sans Pro', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'].join(','),
     h1: {
       fontFamily: 'Source Code Pro',
       fontWeight: 'bold',

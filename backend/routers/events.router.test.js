@@ -204,9 +204,7 @@ describe('Unit Tests for events.router.js', () => {
       Event.find.mockImplementationOnce(() => ({
         populate: jest.fn().mockReturnThis(),
 
-        then: jest.fn(function (callback) {
-          return Promise.resolve(callback(mockEventsForProject));
-        }),
+        then: jest.fn((callback) => Promise.resolve(callback(mockEventsForProject))),
 
         catch: jest.fn(),
       }));
@@ -232,9 +230,7 @@ describe('Unit Tests for events.router.js', () => {
 
         then: jest.fn(() => Promise.reject(mockError)),
 
-        catch: jest.fn(function (callback) {
-          return Promise.resolve(callback(mockError));
-        }),
+        catch: jest.fn((callback) => Promise.resolve(callback(mockError))),
       }));
 
       const response = await request.get(`/api/events/nexteventbyproject/${mockProjectId}`);

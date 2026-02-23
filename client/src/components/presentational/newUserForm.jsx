@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   Box,
   Button,
@@ -10,9 +9,10 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { useState } from 'react';
 import '../../sass/CheckIn.scss';
 
 const NewUserForm = (props) => {
@@ -53,16 +53,10 @@ const NewUserForm = (props) => {
           <Typography variant="h3" fontSize="3em">
             Welcome!
           </Typography>
-          <Typography variant="h6">
-            Tell us a little bit about yourself:
-          </Typography>
+          <Typography variant="h6">Tell us a little bit about yourself:</Typography>
         </Box>
         <Box className="check-in-form">
-          <Box
-            className="form-check-in"
-            autoComplete="off"
-            onSubmit={(e) => e.preventDefault()}
-          >
+          <Box className="form-check-in" autoComplete="off" onSubmit={(e) => e.preventDefault()}>
             <Box className="form-row">
               <TextField
                 label="First Name"
@@ -152,12 +146,8 @@ const NewUserForm = (props) => {
                         name={question.htmlName}
                         placeholder={question.placeholderText}
                         value={
-                          Object.keys(props.formInput).includes(
-                            question.htmlName,
-                          )
-                            ? props.formInput[
-                                question.htmlName.toString()
-                              ].toString()
+                          Object.keys(props.formInput).includes(question.htmlName)
+                            ? props.formInput[question.htmlName.toString()].toString()
                             : ''
                         }
                         onChange={props.handleInputChange}
@@ -181,16 +171,8 @@ const NewUserForm = (props) => {
                           defaultValue="true"
                           onChange={props.handleNewMemberChange}
                         >
-                          <FormControlLabel
-                            value="true"
-                            control={<Radio />}
-                            label="Yes"
-                          />
-                          <FormControlLabel
-                            value="false"
-                            control={<Radio />}
-                            label="No"
-                          />
+                          <FormControlLabel value="true" control={<Radio />} label="Yes" />
+                          <FormControlLabel value="false" control={<Radio />} label="No" />
                         </RadioGroup>
                       </FormControl>
                     </Box>
@@ -243,9 +225,7 @@ const NewUserForm = (props) => {
                                 },
                               }}
                             >
-                              {(params) => (
-                                <TextField {...params} variant="outlined" />
-                              )}
+                              {(params) => <TextField {...params} variant="outlined" />}
                             </DatePicker>
                           </FormControl>
                         </FormControl>

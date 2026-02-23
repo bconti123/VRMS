@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
-import * as d3 from 'd3';
 import { Box, Typography } from '@mui/material';
+import * as d3 from 'd3';
+import React, { useEffect, useRef } from 'react';
 
 import '../../sass/Dashboard.scss';
 
@@ -10,33 +10,23 @@ const DonutChartContainer = (props) => {
   const pieNames = [];
   let count = 0;
   let total = 0;
-  const chartColors = [
-    '#3f7589',
-    '#172d47',
-    '#bd3346',
-    '#999999',
-    '#d9d9d9',
-    '#c88a95',
-  ];
+  const chartColors = ['#3f7589', '#172d47', '#bd3346', '#999999', '#d9d9d9', '#c88a95'];
 
-  for (let key in props.data) {
-    let newValue = props.data[key];
-    let color = chartColors[count];
+  for (const key in props.data) {
+    const newValue = props.data[key];
+    const color = chartColors[count];
     count++;
     total += newValue;
     pieData.push({ value: newValue, color: color });
     pieNames.push(
       <Box className="key-info-container" key={count}>
-        <Box
-          className="key-color"
-          style={{ backgroundColor: `${color}` }}
-        ></Box>
+        <Box className="key-color" style={{ backgroundColor: `${color}` }}></Box>
         <Box className="key-location">
           <Typography>
             {key}: {newValue}
           </Typography>
         </Box>
-      </Box>
+      </Box>,
     );
   }
   total = Math.round(100 * total) / 100;
@@ -56,14 +46,9 @@ const DonutChartContainer = (props) => {
 
     groupWithData.exit().remove();
 
-    const groupWithUpdate = groupWithData
-      .enter()
-      .append('g')
-      .attr('class', 'arc');
+    const groupWithUpdate = groupWithData.enter().append('g').attr('class', 'arc');
 
-    const path = groupWithUpdate
-      .append('path')
-      .merge(groupWithData.select('path.arc'));
+    const path = groupWithUpdate.append('path').merge(groupWithData.select('path.arc'));
 
     path
       .attr('class', 'arc')
@@ -78,9 +63,7 @@ const DonutChartContainer = (props) => {
     <Box className="dashboard-stats">
       <Box className="dashboard-stat-container">
         <Box className="stat-header">
-          <Typography className="stat-header-text">
-            {props.chartName}:
-          </Typography>
+          <Typography className="stat-header-text">{props.chartName}:</Typography>
         </Box>
         <Box className="stat-number">{total}</Box>
       </Box>

@@ -1,21 +1,10 @@
 import React, { Fragment } from 'react';
 import styles from '../../sass/ProjectLeaderDashboard.module.scss';
 
-const RosterTableRow = ({
-  name,
-  role,
-  isNewMember,
-  gDriveClicked,
-  gitHubClicked,
-  services,
-}) => {
+const RosterTableRow = ({ name, role, isNewMember, gDriveClicked, gitHubClicked, services }) => {
   // see icons attr. note @ bottom
   const checkmark = (
-    <img
-      className={styles.rosterIconImg}
-      src="/projectleaderdashboard/check.png"
-      alt="checkmark"
-    />
+    <img className={styles.rosterIconImg} src="/projectleaderdashboard/check.png" alt="checkmark" />
   );
   const gitHubIcon = (
     <img
@@ -43,7 +32,7 @@ const RosterTableRow = ({
     />
   );
 
-  let here = (
+  const here = (
     <div className={styles.rosterIconContainer}>
       <div className={styles.rosterIcon}>{slackIcon}</div>
       {services.googleDrive ? (

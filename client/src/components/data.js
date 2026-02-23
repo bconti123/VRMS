@@ -5,7 +5,7 @@ export const simpleInputs = [
     name: 'name',
     type: 'text',
     placeholder: 'Enter project name',
-    disabled: false
+    disabled: false,
   },
   {
     label: 'Project Description',
@@ -14,7 +14,7 @@ export const simpleInputs = [
     placeholder: 'Enter project description',
     value: /^[a-zA-Z0-9].{0,250}$/,
     errorMessage: 'Description must start with alphanumeric characters, 250 char limit',
-    disabled: false
+    disabled: false,
   },
   //this feature is commented out as per the PR #1567
   // {
@@ -33,21 +33,21 @@ export const simpleInputs = [
     name: 'githubIdentifier',
     type: 'text',
     placeholder: 'Enter GitHub identifier',
-    disabled: false
+    disabled: false,
   },
   {
     label: 'GitHub URL',
     name: 'githubUrl',
     type: 'text',
     placeholder: 'https://github.com/',
-    disabled: false
+    disabled: false,
   },
   {
     label: 'Slack Channel Link',
     name: 'slackUrl',
     type: 'text',
     placeholder: 'https://slack.com/',
-    disabled: false
+    disabled: false,
   },
   {
     label: 'Google Drive URL',
@@ -56,8 +56,8 @@ export const simpleInputs = [
     placeholder: 'https://drive.google.com/',
     disabled: false,
     required: true,
-    pattern: /^https:\/\/drive\.google\.com\/.+$/, 
-    errorMessage: 'Invalid Google Drive URL'
+    pattern: /^https:\/\/drive\.google\.com\/.+$/,
+    errorMessage: 'Invalid Google Drive URL',
   },
   {
     label: 'HFLA Website URL',
@@ -65,7 +65,7 @@ export const simpleInputs = [
     type: 'text',
     placeholder: 'https://hackforla.org/projects/',
     disabled: false,
-    required: false
+    required: false,
   },
 ];
 
@@ -109,4 +109,4 @@ export const additionalInputsForEdit = [
   //   placeholder: 'Created Date',
   //   disabled: true
   // }
-]
+];

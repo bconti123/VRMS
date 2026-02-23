@@ -15,8 +15,7 @@ const readableEvent = (e) => {
   // Convert end time from 24 to 12 and make pretty
   const sHours = start.getHours();
   const startHours = sHours % 12 || 12;
-  const startMinutes =
-    (start.getMinutes() < 10 ? '0' : '') + start.getMinutes();
+  const startMinutes = (start.getMinutes() < 10 ? '0' : '') + start.getMinutes();
   const startAorP = sHours >= 12 ? 'pm' : 'am';
   const startTime = `${startHours}:${startMinutes}${startAorP}`;
 

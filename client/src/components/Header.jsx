@@ -1,5 +1,5 @@
-import React from "react";
-import "../sass/Headers.scss";
+import React from 'react';
+import '../sass/Headers.scss';
 
 export function HeaderBarTextOnly({ className, children, ...props }) {
   return (

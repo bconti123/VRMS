@@ -2,7 +2,7 @@ const { Event } = require('../models');
 
 const EventController = {};
 
-EventController.event_list = async function (req, res) {
+EventController.event_list = async (req, res) => {
   const { query } = req;
 
   try {
@@ -13,7 +13,7 @@ EventController.event_list = async function (req, res) {
   }
 };
 
-EventController.event_by_id = async function (req, res) {
+EventController.event_by_id = async (req, res) => {
   const { EventId } = req.params;
 
   try {
@@ -24,7 +24,7 @@ EventController.event_by_id = async function (req, res) {
   }
 };
 
-EventController.create = async function (req, res) {
+EventController.create = async (req, res) => {
   const { body } = req;
 
   try {
@@ -35,7 +35,7 @@ EventController.create = async function (req, res) {
   }
 };
 
-EventController.destroy = async function (req, res) {
+EventController.destroy = async (req, res) => {
   const { EventId } = req.params;
 
   try {
@@ -46,7 +46,7 @@ EventController.destroy = async function (req, res) {
   }
 };
 
-EventController.update = async function (req, res) {
+EventController.update = async (req, res) => {
   const { EventId } = req.params;
 
   try {

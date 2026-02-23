@@ -1,5 +1,5 @@
+import { Box, Link, Typography } from '@mui/material';
 import React from 'react';
-import { Typography, Box, Link } from '@mui/material';
 import useAuth from '../hooks/useAuth';
 
 export default function UserWelcome() {
@@ -14,9 +14,7 @@ export default function UserWelcome() {
     <Box textAlign="center" sx={{ pt: 5 }}>
       <Typography variant="h1">Welcome {firstName}!</Typography>
       <Box sx={{ fontSize: '16px' }}>
-        <Typography variant="p">
-          For assistance using VRMS, check out the{' '}
-        </Typography>
+        <Typography variant="p">For assistance using VRMS, check out the </Typography>
         <Link
           target="_blank"
           href="https://github.com/hackforla/VRMS/wiki/User-Guide"

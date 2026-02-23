@@ -1,6 +1,6 @@
+import { Box, Button } from '@mui/material';
 import React, { useState } from 'react';
 import EventForm from './eventForm';
-import { Box, Button } from '@mui/material';
 import '../../sass/ManageProjects.scss';
 
 const EditableMeeting = ({
@@ -55,27 +55,14 @@ const EditableMeeting = ({
         <Button
           type="button"
           className="create-form-button"
-          onClick={handleEventUpdate(
-            eventId,
-            formValues,
-            eventStartTime,
-            eventDuration
-          )}
+          onClick={handleEventUpdate(eventId, formValues, eventStartTime, eventDuration)}
         >
           UPDATE
         </Button>
-        <Button
-          type="button"
-          className="create-form-button"
-          onClick={handleResetEvent(eventId)}
-        >
+        <Button type="button" className="create-form-button" onClick={handleResetEvent(eventId)}>
           RESET
         </Button>
-        <Button
-          type="button"
-          className="create-form-button"
-          onClick={handleEventDelete(eventId)}
-        >
+        <Button type="button" className="create-form-button" onClick={handleEventDelete(eventId)}>
           DELETE
         </Button>
       </Box>

@@ -1,36 +1,37 @@
-import { AuthProvider } from './context/authContext';
-import { Route, Redirect, Switch } from 'react-router-dom';
-import Home from './pages/Home';
-import Navbar from './components/Navbar';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import Footer from './components/Footer';
+import Navbar from './components/Navbar';
 import AdminDashboard from './components/admin/dashboard';
-import UserDashboard from './pages/UserDashboard';
-import UserProfile from './pages/UserProfile';
-import Event from './pages/Event';
-import NewUser from './pages/NewUser';
-import ReturningUser from './pages/ReturningUser';
 import Auth from './components/auth/Auth';
-import CheckInForm from './pages/CheckInForm';
-import Success from './pages/Success';
 import HandleAuth from './components/auth/HandleAuth';
-import EmailSent from './pages/EmailSent';
-import Events from './pages/Events';
-import ProjectLeaderDashboard from './pages/ProjectLeaderDashboard';
-import Users from './pages/Users';
-import UserAdmin from './pages/UserAdmin';
-import ProjectList from './pages/ProjectList';
-import ManageProjects from './pages/ManageProjects';
 import addProject from './components/manageProjects/addProject';
+import { AuthProvider } from './context/authContext';
+import CheckInForm from './pages/CheckInForm';
+import EmailSent from './pages/EmailSent';
+import Event from './pages/Event';
+import Events from './pages/Events';
 import HealthCheck from './pages/HealthCheck';
-import SecretPassword from './pages/SecretPassword';
-import UserWelcome from './pages/UserWelcome';
-import UserPermission from './pages/UserPermission';
+import Home from './pages/Home';
+import ManageProjects from './pages/ManageProjects';
+import NewUser from './pages/NewUser';
 import OnboardOffboardVisibility from './pages/OnboardOffboardVisibility';
+import ProjectLeaderDashboard from './pages/ProjectLeaderDashboard';
+import ProjectList from './pages/ProjectList';
+import ReturningUser from './pages/ReturningUser';
+import SecretPassword from './pages/SecretPassword';
+import Success from './pages/Success';
+import UserAdmin from './pages/UserAdmin';
+import UserDashboard from './pages/UserDashboard';
+import UserPermission from './pages/UserPermission';
+import UserProfile from './pages/UserProfile';
+import UserWelcome from './pages/UserWelcome';
+import Users from './pages/Users';
 
 import { Box, ThemeProvider } from '@mui/material';
 import theme from './theme';
 import './App.scss';
 
+import { SearchTextProvider } from './context/searchContext';
 /* 
    withAuth Hook
    Wraps component with withAuth hook to manage automatic redirect to login page if user is not logged in
@@ -40,7 +41,6 @@ import './App.scss';
    Return <ComponentName {...props} auth={auth} /> if user is logged in
 */
 import withAuth from './hooks/withAuth';
-import { SearchTextProvider } from './context/searchContext';
 
 const routes = [
   { path: '/', name: 'home', Component: Home },

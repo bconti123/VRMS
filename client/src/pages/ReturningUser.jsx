@@ -1,6 +1,6 @@
+import { Box, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import ReadyEvents from '../components/ReadyEvents';
-import { Box, Typography } from '@mui/material';
 
 const ReturningUser = (props) => {
   const [returningUser] = useState(true);

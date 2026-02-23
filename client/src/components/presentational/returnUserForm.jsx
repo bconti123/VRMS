@@ -1,5 +1,5 @@
-import React from 'react';
 import { Box, Button, FormControl, TextField, Typography } from '@mui/material';
+import React from 'react';
 
 const ReturnUserForm = (props) => {
   return (
@@ -14,11 +14,7 @@ const ReturnUserForm = (props) => {
         </Typography>
       </Box>
       <Box className="check-in-form">
-        <FormControl
-          autoComplete
-          className="form-check-in"
-          onSubmit={(e) => e.preventDefault()}
-        >
+        <FormControl autoComplete className="form-check-in" onSubmit={(e) => e.preventDefault()}>
           <Box className="form-row">
             <Box className="form-input-text">
               <Typography style={{ marginBottom: 30 }}>
@@ -53,9 +49,7 @@ const ReturnUserForm = (props) => {
             <Box className="error">{props.errorMessage}</Box>
           )}
 
-          {props.user === false && (
-            <Box className="error">Try entering your email again.</Box>
-          )}
+          {props.user === false && <Box className="error">Try entering your email again.</Box>}
 
           {!props.user && !props.isLoading ? (
             <Box className="form-row">
@@ -64,9 +58,7 @@ const ReturnUserForm = (props) => {
                   type="submit"
                   className="form-check-in-submit"
                   onClick={(e) => props.checkEmail(e)}
-                  disabled={
-                    !props.formInput.email || props.formInput.email === ''
-                  }
+                  disabled={!props.formInput.email || props.formInput.email === ''}
                 >
                   CHECK IN
                 </Button>

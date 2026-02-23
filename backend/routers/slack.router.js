@@ -1,8 +1,8 @@
-const express = require("express");
+const express = require('express');
 
 const router = express.Router();
-const { App } = require("@slack/bolt");
-const cron = require("node-cron");
+const { App } = require('@slack/bolt');
+const cron = require('node-cron');
 const { Event } = require('../models/event.model');
 const { Project } = require('../models/project.model');
 
@@ -11,32 +11,32 @@ const { Project } = require('../models/project.model');
 let app = null;
 
 if (process.env.NODE_ENV !== 'test') {
-    app = new App({
-      token: process.env.SLACK_BOT_TOKEN,
-      signingSecret: process.env.SLACK_SIGNING_SECRET,
-    });
+  app = new App({
+    token: process.env.SLACK_BOT_TOKEN,
+    signingSecret: process.env.SLACK_SIGNING_SECRET,
+  });
 }
 
 // Checks DB every monday (1) for slack messages to schedule this week
 // cron.schedule("* * * * 1", () => {});
 
 // TODO: Refactor this server out of the router. This server instance is breaking the tests.
-if (process.env.NODE_ENV !== "test") {
+if (process.env.NODE_ENV !== 'test') {
   (async () => {
     await app.start(4050);
-    console.log("Connected to Slack");
+    console.log('Connected to Slack');
   })();
 }
 
 // Finds Id number of channel
-router.get("/findId", (req, res) => {
+router.get('/findId', (req, res) => {
   publishMessage();
   findEvent();
   // findProject();
 });
 
 // uses Id number to send message to said channel
-router.post("/postMeeting/:id", (req, res) => {
+router.post('/postMeeting/:id', (req, res) => {
   publishMessage1();
 });
 
@@ -46,11 +46,11 @@ async function findConversation(name) {
       token: process.env.SLACK_BOT_TOKEN,
     });
 
-    for (let channel of result.channels) {
+    for (const channel of result.channels) {
       if (channel.name === name) {
         conversationId = channel.id;
 
-        console.log(`Found conversation ID: ${  conversationId}`);
+        console.log(`Found conversation ID: ${conversationId}`);
         break;
       }
     }
@@ -64,7 +64,7 @@ async function publishMessage(id, text) {
     const result = await app.client.chat.postMessage({
       token: process.env.SLACK_BOT_TOKEN,
       channel: process.env.SLACK_CHANNEL_ID,
-      text: "Slack Message Publish",
+      text: 'Slack Message Publish',
     });
 
     console.log(result);
@@ -90,12 +90,12 @@ async function publishMessage1(id, text) {
 async function findEvent(req, res) {
   Event.find({})
     .then((events) => {
-      console.log("EVENTS", events);
+      console.log('EVENTS', events);
       return res.status(200).send(events);
     })
     .catch((err) => {
       console.log(err);
-      return res.sendStatus(400)
+      return res.sendStatus(400);
     });
 }
 
@@ -103,7 +103,7 @@ async function findProject(req, res) {
   Project.find({})
     .then((project) => {
       project.forEach((cur) => {
-        console.log("PROJECT", cur.name);
+        console.log('PROJECT', cur.name);
       });
       return res.status(200).send(project);
     })

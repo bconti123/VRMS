@@ -31,14 +31,15 @@ const SelectProject = ({ projects, accessLevel, user }) => {
     <div className="container--ManageProjects">
       <Typography variant="h3">Project Management</Typography>
       <div className="project-sub-heading" style={{ margin: '0 auto' }}>
-        {accessLevel === 'admin' || accessLevel === 'superadmin' && (
-          <Link to="/projects/create">
-            {' '}
-            <Button variant="secondary" sx={{ mb: 3 }}>
-              Add a New Project
-            </Button>
-          </Link>
-        )}
+        {accessLevel === 'admin' ||
+          (accessLevel === 'superadmin' && (
+            <Link to="/projects/create">
+              {' '}
+              <Button variant="secondary" sx={{ mb: 3 }}>
+                Add a New Project
+              </Button>
+            </Link>
+          ))}
       </div>
       <ul className="project-list">{managedProjects}</ul>
     </div>

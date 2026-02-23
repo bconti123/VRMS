@@ -2,7 +2,7 @@ import React from 'react';
 import ProjectForm from '../ProjectForm';
 import { simpleInputs } from '../data';
 
-function addProject({auth}) {
+function addProject({ auth }) {
   return (
     <div>
       <ProjectForm

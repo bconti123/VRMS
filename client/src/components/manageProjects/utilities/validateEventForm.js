@@ -1,12 +1,12 @@
-import { isWordInArrayInString } from './../../../utils/stringUtils.js';
 import { eventNameBlacklistArr } from '../../../utils/blacklist.js';
+import { isWordInArrayInString } from './../../../utils/stringUtils.js';
 
 const validateEventForm = (vals, projectToEdit) => {
   let newErrors = {};
   Object.keys(vals).forEach((key) => {
-    let blacklistedStrings = isWordInArrayInString(
+    const blacklistedStrings = isWordInArrayInString(
       eventNameBlacklistArr,
-      vals[key].toLowerCase()
+      vals[key].toLowerCase(),
     );
     switch (key) {
       case 'name':
@@ -19,10 +19,7 @@ const validateEventForm = (vals, projectToEdit) => {
             name: `Event name cannot contain: ${blacklistedStrings.join(', ')}`,
           };
         } else if (
-          isWordInArrayInString(
-            [projectToEdit.name.toLowerCase()],
-            vals[key].toLowerCase()
-          )
+          isWordInArrayInString([projectToEdit.name.toLowerCase()], vals[key].toLowerCase())
         ) {
           if (projectToEdit.name.toLowerCase() === 'onboarding') {
             // Do nothing, word `onboarding` has been white-listed
@@ -63,7 +60,6 @@ export default validateEventForm;
 function validateLink(url) {
   const ZoomMeetRegex =
     /^(?:https:\/\/)?(?:www\.)?(?:[a-z0-9-]+\.)?zoom\.us\/j\/[0-9]+(\?pwd=[a-zA-Z0-9]+)?$/;
-  const GoogleMeetRegex =
-    /^(?:https:\/\/)?(?:[a-z0-9-]+\.)?meet\.google\.com\/[a-zA-Z0-9-]+$/;
+  const GoogleMeetRegex = /^(?:https:\/\/)?(?:[a-z0-9-]+\.)?meet\.google\.com\/[a-zA-Z0-9-]+$/;
   return ZoomMeetRegex.test(url) || GoogleMeetRegex.test(url);
 }

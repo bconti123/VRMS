@@ -1,9 +1,9 @@
 // test-setup.js
-const mongoose = require("mongoose");
-mongoose.set("useCreateIndex", true);
+const mongoose = require('mongoose');
+mongoose.set('useCreateIndex', true);
 mongoose.promise = global.Promise;
 
-const { MongoMemoryServer } = require("mongodb-memory-server");
+const { MongoMemoryServer } = require('mongodb-memory-server');
 
 async function removeAllCollections() {
   const mongooseCollections = mongoose.connection.collections;
@@ -22,11 +22,10 @@ async function dropAllCollections() {
       await collection.drop();
     } catch (error) {
       // Sometimes this error happens, but you can safely ignore it
-      if (error.message === "ns not found") return;
+      if (error.message === 'ns not found') return;
       // This error occurs when you use it.todo. You can
       // safely ignore this error too
-      if (error.message.includes("a background operation is currently running"))
-        return;
+      if (error.message.includes('a background operation is currently running')) return;
       console.log(error.message);
     }
   }

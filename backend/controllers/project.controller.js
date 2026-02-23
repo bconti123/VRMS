@@ -3,7 +3,7 @@ const { ObjectId } = require('mongodb');
 
 const ProjectController = {};
 
-ProjectController.project_list = async function (req, res) {
+ProjectController.project_list = async (req, res) => {
   const { query } = req;
 
   try {
@@ -14,7 +14,7 @@ ProjectController.project_list = async function (req, res) {
   }
 };
 
-ProjectController.pm_filtered_projects = async function (req, res) {
+ProjectController.pm_filtered_projects = async (req, res) => {
   try {
     const projectList = await Project.find({});
     const projects = projectList.filter((proj) => req.body.includes(proj._id.toString()));
@@ -24,7 +24,7 @@ ProjectController.pm_filtered_projects = async function (req, res) {
   }
 };
 
-ProjectController.create = async function (req, res) {
+ProjectController.create = async (req, res) => {
   const { body } = req;
 
   try {
@@ -35,7 +35,7 @@ ProjectController.create = async function (req, res) {
   }
 };
 
-ProjectController.project_by_id = async function (req, res) {
+ProjectController.project_by_id = async (req, res) => {
   const { ProjectId } = req.params;
 
   try {
@@ -46,7 +46,7 @@ ProjectController.project_by_id = async function (req, res) {
   }
 };
 
-ProjectController.update = async function (req, res) {
+ProjectController.update = async (req, res) => {
   const { ProjectId } = req.params;
   try {
     const project = await Project.findOneAndUpdate({ _id: ProjectId }, req.body, { new: true });
@@ -56,7 +56,7 @@ ProjectController.update = async function (req, res) {
   }
 };
 
-ProjectController.destroy = async function (req, res) {
+ProjectController.destroy = async (req, res) => {
   const { ProjectId } = req.params;
 
   try {
@@ -67,7 +67,7 @@ ProjectController.destroy = async function (req, res) {
   }
 };
 
-ProjectController.updateManagedByUsers = async function (req, res) {
+ProjectController.updateManagedByUsers = async (req, res) => {
   const { ProjectId } = req.params;
   const { action, userId } = req.body; // action - 'add' or 'remove'
 
@@ -103,7 +103,7 @@ ProjectController.updateManagedByUsers = async function (req, res) {
   }
 };
 
-ProjectController.bulkUpdateManagedByUsers = async function (req, res) {
+ProjectController.bulkUpdateManagedByUsers = async (req, res) => {
   const { bulkOps } = req.body;
 
   // Convert string IDs to ObjectId in bulkOps
@@ -131,7 +131,7 @@ ProjectController.bulkUpdateManagedByUsers = async function (req, res) {
 };
 
 // Update onboard/offboard visibility for a project
-ProjectController.updateOnboardOffboardVisibility = async function (req, res) {
+ProjectController.updateOnboardOffboardVisibility = async (req, res) => {
   const { ProjectId } = req.params;
   const { onboardOffboardVisible } = req.body;
 
@@ -139,7 +139,7 @@ ProjectController.updateOnboardOffboardVisibility = async function (req, res) {
     const project = await Project.findByIdAndUpdate(
       ProjectId,
       { onboardOffboardVisible },
-      { new: true }
+      { new: true },
     );
 
     if (!project) {

@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
 const { Event } = require('../models/event.model');
@@ -16,9 +16,9 @@ router.delete('/:EventId', EventController.destroy);
 router.patch('/:EventId', EventController.update);
 
 // TODO: Refactor and remove
-router.get("/nexteventbyproject/:id", (req, res) => {
+router.get('/nexteventbyproject/:id', (req, res) => {
   Event.find({ project: req.params.id })
-    .populate("project")
+    .populate('project')
     .then((events) => {
       res.status(200).json(events[events.length - 1]);
     })

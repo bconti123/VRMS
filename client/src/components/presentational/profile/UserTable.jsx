@@ -1,14 +1,7 @@
 import React from 'react';
 import ProfileOption from '../profile/ProfileOption';
 
-import {
-  Box,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-} from '@mui/material';
+import { Box, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 
 const UserTable = ({ context }) => {
   const { user, removeOption } = context;

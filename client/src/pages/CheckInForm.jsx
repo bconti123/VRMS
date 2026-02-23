@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { Box } from '@mui/material';
+import { format } from 'date-fns';
 import moment from 'moment';
+import React, { useState, useEffect } from 'react';
+import { REACT_APP_CUSTOM_REQUEST_HEADER as headerToSend } from '../utils/globalSettings';
 import NewUserForm from './../components/presentational/newUserForm';
 import ReturnUserForm from './../components/presentational/returnUserForm';
-import { REACT_APP_CUSTOM_REQUEST_HEADER as headerToSend } from '../utils/globalSettings';
-import { format } from 'date-fns';
-import { Box } from '@mui/material';
 
 import '../sass/CheckIn.scss';
 
@@ -19,7 +19,7 @@ const CheckInForm = (props) => {
 
   // eslint-disable-next-line no-unused-vars
   const [eventId, setEventId] = useState(
-    props.location.search.slice(9, props.location.search.length)
+    props.location.search.slice(9, props.location.search.length),
   );
   const [formInput, setFormInput] = useState({
     email: '',
@@ -304,19 +304,14 @@ const CheckInForm = (props) => {
         ready = false;
       }
 
-      const currYear = parseInt(moment().format('YYYY'));
-      const currMonth = parseInt(moment().format('MM'));
-      const yearJoined = parseInt(year);
-      const monthJoined = parseInt(moment(month + ' 9, 2020').format('MM'));
-     
-      if (
-        yearJoined > currYear ||
-        (yearJoined === currYear && monthJoined > currMonth)
-      ) {
+      const currYear = Number.parseInt(moment().format('YYYY'));
+      const currMonth = Number.parseInt(moment().format('MM'));
+      const yearJoined = Number.parseInt(year);
+      const monthJoined = Number.parseInt(moment(month + ' 9, 2020').format('MM'));
+
+      if (yearJoined > currYear || (yearJoined === currYear && monthJoined > currMonth)) {
         setIsError(true);
-        setErrorMessage(
-          "You can't set a date in the future... Please try again."
-        );
+        setErrorMessage("You can't set a date in the future... Please try again.");
         ready = false;
       }
 
@@ -366,20 +361,15 @@ const CheckInForm = (props) => {
         ready = false;
       }
 
-      const currYear = parseInt(moment().format('YYYY'));
-      const currMonth = parseInt(moment().format('MM'));
-      const yearJoined = parseInt(year);
+      const currYear = Number.parseInt(moment().format('YYYY'));
+      const currMonth = Number.parseInt(moment().format('MM'));
+      const yearJoined = Number.parseInt(year);
       // extra date info needed to be recognized as a date
-      const monthJoined = parseInt(moment(month + ' 9, 2020').format('MM'));
+      const monthJoined = Number.parseInt(moment(month + ' 9, 2020').format('MM'));
 
-      if (
-        yearJoined > currYear ||
-        (yearJoined === currYear && monthJoined > currMonth)
-      ) {
+      if (yearJoined > currYear || (yearJoined === currYear && monthJoined > currMonth)) {
         setIsError(true);
-        setErrorMessage(
-          "You can't set a date in the future... Please try again."
-        );
+        setErrorMessage("You can't set a date in the future... Please try again.");
         ready = false;
       }
 
@@ -427,7 +417,7 @@ const CheckInForm = (props) => {
         .catch((err) => {
           console.log(err);
           setIsLoading(false);
-          
+
           // Fixes for error messages
           setUser(false);
           setIsError(true);

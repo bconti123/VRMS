@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import EditMeetingTimes from './editMeetingTimes';
-import CreateNewEvent from './createNewEvent';
-import readableEvent from './utilities/readableEvent';
 import ProjectForm from '../ProjectForm';
-import { simpleInputs, additionalInputsForEdit } from '../data';
+import { additionalInputsForEdit, simpleInputs } from '../data';
 import TitledBox from '../parts/boxes/TitledBox';
 import TitledBoxIFrame from '../parts/boxes/TitledBoxIFrame';
+import CreateNewEvent from './createNewEvent';
+import EditMeetingTimes from './editMeetingTimes';
+import readableEvent from './utilities/readableEvent';
 
 import EditIcon from '../../svg/Icon_Edit.svg?react';
 import PlusIcon from '../../svg/PlusIcon.svg?react';
 
-import { Typography, Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import EditProjectMembers from './editPMs/editProjectMembers';
 
 // Need to hold user state to check which type of user they are and conditionally render editing fields in this component
@@ -60,7 +60,7 @@ const EditProject = ({
           // eslint-disable-next-line no-underscore-dangle
           .filter((e) => e?.project?._id === projectToEdit._id)
           .map((item) => ({ ...item, ...readableEvent(item), raw: item }))
-          .reverse() // sorts most recent events first
+          .reverse(), // sorts most recent events first
       );
     }
   }, [projectToEdit, regularEvents, setRegularEventsState]);
@@ -73,7 +73,7 @@ const EditProject = ({
           // eslint-disable-next-line no-underscore-dangle
           .filter((e) => e?.project?._id === projectToEdit._id)
           .map((item) => readableEvent(item))
-          .sort((a, b) => a.dayOfTheWeekNumber - b.dayOfTheWeekNumber)
+          .sort((a, b) => a.dayOfTheWeekNumber - b.dayOfTheWeekNumber),
       );
     }
   }, [projectToEdit, recurringEvents, setREvents]);
@@ -170,11 +170,7 @@ const EditProject = ({
           <ul>
             {regularEventsState.map((event, index) => (
               // eslint-dis able-next-line no-underscore-dangle
-              <RegularEvent
-                event={event}
-                key={event._id}
-                updateRegularEvent={updateRegularEvent}
-              />
+              <RegularEvent event={event} key={event._id} updateRegularEvent={updateRegularEvent} />
             ))}
           </ul>
         </div>
@@ -189,10 +185,7 @@ function RegularEvent({ event, updateRegularEvent }) {
       <button
         type="button"
         onClick={async () =>
-          updateRegularEvent(
-            { checkInReady: !event.checkInReady },
-            event.event_id
-          )
+          updateRegularEvent({ checkInReady: !event.checkInReady }, event.event_id)
         }
       >
         <div>{event.name}</div>

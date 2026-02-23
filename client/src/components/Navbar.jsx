@@ -1,9 +1,9 @@
+import { Box, Button, Grid } from '@mui/material';
+import { styled } from '@mui/system';
 import React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import HflaImg from '../svg/hflalogo.svg';
-import { Box, Button, Grid } from '@mui/material';
-import { styled } from '@mui/system';
 import theme from '../theme';
 
 const Navbar = (props) => {
@@ -31,11 +31,7 @@ const Navbar = (props) => {
       <Grid container>
         <Grid item>
           <NavLink to={!auth?.user ? '/' : '/welcome'}>
-            <Box
-              component="img"
-              src={HflaImg}
-              sx={{ width: '48.3px', mt: '7px' }}
-            />
+            <Box component="img" src={HflaImg} sx={{ width: '48.3px', mt: '7px' }} />
           </NavLink>
         </Grid>
         <Grid

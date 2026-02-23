@@ -1,10 +1,10 @@
 import React from 'react';
 import '../sass/UserProfile.scss';
-import UserTable from '../components/presentational/profile/UserTable';
+import { Box, Grid, Typography } from '@mui/material';
 import UserEvents from '../components/presentational/profile/UserEvents';
+import UserTable from '../components/presentational/profile/UserTable';
 import UserTeams from '../components/presentational/profile/UserTeams';
-import { UserProvider, UserContext } from '../context/userContext';
-import { Box, Typography, Grid } from '@mui/material';
+import { UserContext, UserProvider } from '../context/userContext';
 
 const UserProfile = (props) => (
   <UserProvider>
@@ -24,9 +24,7 @@ const UserProfile = (props) => (
         </Typography>
       </Box>
       <UserContext.Consumer>
-        {({ user, removeOption }) => (
-          <UserTable context={{ user, removeOption }} />
-        )}
+        {({ user, removeOption }) => <UserTable context={{ user, removeOption }} />}
       </UserContext.Consumer>
       <Box style={{ backgroundColor: '#bad3ff' }}>
         <Typography

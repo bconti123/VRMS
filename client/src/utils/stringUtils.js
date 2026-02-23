@@ -1,13 +1,13 @@
 export const isWordInArrayInString = (arr, str) => {
   const words = str.split(' ');
-  let foundWords = []
-  for (let word of words) {
+  const foundWords = [];
+  for (const word of words) {
     if (arr.includes(word)) {
-      foundWords.push(word)
+      foundWords.push(word);
     }
   }
-  if(foundWords.length > 0) {
-    return foundWords
+  if (foundWords.length > 0) {
+    return foundWords;
   }
   return false;
 };

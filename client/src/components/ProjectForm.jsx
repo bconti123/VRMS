@@ -1,26 +1,26 @@
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useForm, useFormState } from 'react-hook-form';
 import {
-  CircularProgress,
-  Typography,
   Box,
   Button,
-  Grid,
-  Radio,
+  CircularProgress,
   FormControl,
   FormControlLabel,
-  RadioGroup,
+  Grid,
   Paper,
+  Radio,
+  RadioGroup,
+  Typography,
 } from '@mui/material';
+import { useState } from 'react';
+import { useForm, useFormState } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 
-import useAuth from '../hooks/useAuth';
 import ProjectApiService from '../api/ProjectApiService';
+import useAuth from '../hooks/useAuth';
 import EditIcon from '../svg/Icon_Edit.svg?react';
 import PlusIcon from '../svg/PlusIcon.svg?react';
-import ValidatedTextField from './parts/form/ValidatedTextField';
-import TitledBox from './parts/boxes/TitledBox';
 import ChangesModal from './ChangesModal';
+import TitledBox from './parts/boxes/TitledBox';
+import ValidatedTextField from './parts/form/ValidatedTextField';
 
 /** STYLES
  *  -most TextField and InputLabel styles are controlled by the theme
@@ -43,13 +43,7 @@ import ChangesModal from './ChangesModal';
  * - isEdit - Whether its creating a new project or editing one - True or False.
  * - setFormData - allows us to updated the form data.
  * */
-export default function ProjectForm({
-  arr,
-  formData,
-  projectToEdit,
-  isEdit,
-  setFormData,
-}) {
+export default function ProjectForm({ arr, formData, projectToEdit, isEdit, setFormData }) {
   const history = useHistory();
 
   // ----------------- States -----------------
@@ -156,9 +150,7 @@ export default function ProjectForm({
         }}
       >
         <PlusIcon style={{ p: 1 }} />
-        <Typography sx={{ p: 1, fontSize: '14px', fontWeight: '600' }}>
-          Add New Project
-        </Typography>
+        <Typography sx={{ p: 1, fontSize: '14px', fontWeight: '600' }}>Add New Project</Typography>
       </Box>
     );
   };
@@ -220,12 +212,8 @@ export default function ProjectForm({
       <Box sx={{ textAlign: 'center' }}>
         <Typography variant="h1">{projectName}</Typography>
       </Box>
-      <Paper
-        elevation={3}
-        sx={{ padding: 3, borderRadius: 1, backgroundColor: '#f5f5f5' }}
-      >
-        {auth.user.accessLevel === 'admin' ||
-        auth.user.accessLevel === 'superadmin' ? (
+      <Paper elevation={3} sx={{ padding: 3, borderRadius: 1, backgroundColor: '#f5f5f5' }}>
+        {auth.user.accessLevel === 'admin' || auth.user.accessLevel === 'superadmin' ? (
           <TitledBox
             title={editMode ? 'Editing Project' : 'Project Information'}
             badge={isEdit ? editIcon() : addIcon()}
@@ -264,9 +252,7 @@ export default function ProjectForm({
                 <Button
                   type="submit"
                   form="project-form"
-                  variant={
-                    !isEdit ? 'secondary' : !editMode ? 'contained' : 'secondary'
-                  }
+                  variant={!isEdit ? 'secondary' : !editMode ? 'contained' : 'secondary'}
                   sx={{
                     width: '150px',
                     cursor: 'pointer',
@@ -284,9 +270,7 @@ export default function ProjectForm({
                     cursor: 'pointer',
                   }}
                   onClick={
-                    !editMode || Object.keys(dirtyFields).length === 0
-                      ? checkFields
-                      : handleOpen
+                    !editMode || Object.keys(dirtyFields).length === 0 ? checkFields : handleOpen
                   }
                 >
                   Close

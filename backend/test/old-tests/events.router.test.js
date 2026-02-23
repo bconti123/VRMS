@@ -1,11 +1,11 @@
-const supertest = require("supertest");
-const app = require("../app");
+const supertest = require('supertest');
+const app = require('../app');
 const CONFIG = require('../config/auth.config');
 
 const request = supertest(app);
 
-const { setupDB } = require("../setup-test");
-setupDB("api-events");
+const { setupDB } = require('../setup-test');
+setupDB('api-events');
 
 const { Event } = require('../models');
 
@@ -22,10 +22,7 @@ describe('CREATE', () => {
     };
 
     // Submit an event
-    const res = await request
-      .post('/api/events/')
-      .set(headers)
-      .send(submittedData);
+    const res = await request.post('/api/events/').set(headers).send(submittedData);
     expect(res.status).toBe(201);
 
     // Retrieve that event
@@ -44,9 +41,9 @@ describe('READ', () => {
       createdDate: '2020-05-20T21:16:44.498Z',
       checkinReady: true,
     };
-    
+
     // Add an event with a project using the API.
-    const res = await request.post("/api/events").send(submittedData).set(headers);
+    const res = await request.post('/api/events').send(submittedData).set(headers);
 
     // Retrieve and compare the the Event values using the DB.
     const databaseEventQuery = await Event.find();
@@ -109,10 +106,7 @@ describe('UPDATE', () => {
     };
 
     // Submit an event
-    const res = await request
-      .post('/api/events/')
-      .set(headers)
-      .send(submittedData);
+    const res = await request.post('/api/events/').set(headers).send(submittedData);
     expect(res.status).toBe(201);
 
     const updatedDataPayload = {
@@ -138,10 +132,7 @@ describe('DELETE', () => {
     };
 
     // Submit an event
-    const res = await request
-      .post('/api/events/')
-      .set(headers)
-      .send(submittedData);
+    const res = await request.post('/api/events/').set(headers).send(submittedData);
     expect(res.status).toBe(201);
 
     // Delete the event

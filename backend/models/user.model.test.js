@@ -108,7 +108,6 @@ describe('Unit tests for User Model', () => {
       expect(mockUser.email).toBe(uppercaseEmail.toLowerCase());
     });
 
-
     it('should pass validation with valid user data', async () => {
       // Create a mock user with valid data
       const mockUser = new User({

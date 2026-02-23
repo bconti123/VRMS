@@ -1,6 +1,6 @@
-import React from "react";
-import styles from "../../sass/ProjectLeaderDashboard.module.scss";
-import { REACT_APP_CUSTOM_REQUEST_HEADER as headerToSend} from "../../utils/globalSettings";
+import React from 'react';
+import styles from '../../sass/ProjectLeaderDashboard.module.scss';
+import { REACT_APP_CUSTOM_REQUEST_HEADER as headerToSend } from '../../utils/globalSettings';
 
 const RosterTable = ({ attendees, activeMeeting, RosterProjectId }) => {
   const gitHubIcon = (
@@ -29,11 +29,11 @@ const RosterTable = ({ attendees, activeMeeting, RosterProjectId }) => {
   );
 
   const slackTestButton = () => {
-    fetch("api/slack/findId", {
-      method: "GET",
+    fetch('api/slack/findId', {
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
-        "x-customrequired-header": headerToSend
+        'Content-Type': 'application/json',
+        'x-customrequired-header': headerToSend,
       },
     })
       .then((res) => {
@@ -54,11 +54,11 @@ const RosterTable = ({ attendees, activeMeeting, RosterProjectId }) => {
       email: email,
       file: fileId,
     };
-    fetch("api/grantpermission/googleDrive", {
-      method: "POST",
+    fetch('api/grantpermission/googleDrive', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        "x-customrequired-header": headerToSend
+        'Content-Type': 'application/json',
+        'x-customrequired-header': headerToSend,
       },
       body: JSON.stringify(bodyObject),
     })
@@ -77,22 +77,18 @@ const RosterTable = ({ attendees, activeMeeting, RosterProjectId }) => {
   };
 
   // eslint-disable-next-line
-  const gitHubClickHandler = (
-    githubHandle,
-    projectName,
-    accessLevel = "manager"
-  ) => {
+  const gitHubClickHandler = (githubHandle, projectName, accessLevel = 'manager') => {
     const bodyObject = {
       // temporary placeholder handle + repoName
-      handle: "testingphoebe",
-      teamName: "vrms", //projectName, no where to pull that from currently, event object doesn't provide project name
+      handle: 'testingphoebe',
+      teamName: 'vrms', //projectName, no where to pull that from currently, event object doesn't provide project name
       accessLevel,
     };
-    fetch("api/grantpermission/gitHub", {
-      method: "POST",
+    fetch('api/grantpermission/gitHub', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        "x-customrequired-header": headerToSend
+        'Content-Type': 'application/json',
+        'x-customrequired-header': headerToSend,
       },
       body: JSON.stringify(bodyObject),
     })

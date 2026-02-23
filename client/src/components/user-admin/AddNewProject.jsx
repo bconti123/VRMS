@@ -6,7 +6,7 @@ const AddNewProject = ({
   projects,
   onBackClick,
   handleNewProjectFormSubmit,
-  newlyCreatedProject
+  newlyCreatedProject,
 }) => {
   // initialize state hooks
   const [newProjectName, setNewProjectName] = useState(''); // manage input state
@@ -19,7 +19,7 @@ const AddNewProject = ({
   };
 
   if (newlyCreatedProject !== null) {
-    return <Redirect to={`/project/${newlyCreatedProject}`} />
+    return <Redirect to={`/project/${newlyCreatedProject}`} />;
   }
 
   // Handle Form Submit
@@ -40,15 +40,10 @@ const AddNewProject = ({
 
     // If the entry already exists in the db, set error and clear form
     const validationMatch = Object.values(projects)
-      .filter(
-        (project) =>
-          project.name.toLowerCase() === newProjectName.toLowerCase().trim()
-      )
+      .filter((project) => project.name.toLowerCase() === newProjectName.toLowerCase().trim())
       .map((p) => p.name);
     if (validationMatch.length > 0) {
-      setValidationErrors(
-        `The project name "${newProjectName}" is already in use.`
-      );
+      setValidationErrors(`The project name "${newProjectName}" is already in use.`);
       setNewProjectName(''); // clear the form
     } else {
       handleNewProjectFormSubmit(newProjectName);
@@ -56,7 +51,7 @@ const AddNewProject = ({
       setAddProjectSuccess(`The project "${newProjectName}" has been added!`);
     }
   };
-  
+
   return (
     <div className="add-new-project">
       <h3>Add New Project</h3>
@@ -68,10 +63,10 @@ const AddNewProject = ({
               placeholder="Project Name"
               value={newProjectName}
               onChange={handleNameChange}
-              />
+            />
             <span className="validation-error">{validationError}</span>
             <span className="project-success">{addProjectSuccess}</span>
-              { newlyCreatedProject && <div>{newlyCreatedProject}</div>}
+            {newlyCreatedProject && <div>{newlyCreatedProject}</div>}
           </div>
           <br />
           <button className="button-add" type="submit">

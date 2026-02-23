@@ -1,15 +1,8 @@
+import { Box, List, ListItem, ListItemText, TextField, Typography } from '@mui/material';
+import moment from 'moment';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import moment from 'moment';
 import { REACT_APP_CUSTOM_REQUEST_HEADER as headerToSend } from '../utils/globalSettings';
-import {
-  Box,
-  List,
-  TextField,
-  ListItem,
-  ListItemText,
-  Typography,
-} from '@mui/material';
 
 import '../sass/Events.scss';
 
@@ -38,7 +31,7 @@ const Events = (props) => {
   const filteredEvents = events?.filter(
     (event) =>
       typeof event.name === 'string' &&
-      event.name.toLowerCase().match(eventSearchParam.toLowerCase())
+      event.name.toLowerCase().match(eventSearchParam.toLowerCase()),
   );
 
   return (
@@ -56,13 +49,12 @@ const Events = (props) => {
       ) : filteredEvents.length === 0 ? (
         <Typography>No events found.</Typography>
       ) : (
-        <List >
+        <List>
           {filteredEvents.map((event, index) => (
-            <ListItem key={index}  className="event-name">
+            <ListItem key={index} className="event-name">
               <Link to={`/event/${event._id}`}>
                 <ListItemText>
-                  {event.name} (
-                  {moment(event.date).format('ddd, MMM D @ h:mm a')})
+                  {event.name} ({moment(event.date).format('ddd, MMM D @ h:mm a')})
                 </ListItemText>
               </Link>
             </ListItem>
@@ -70,7 +62,7 @@ const Events = (props) => {
         </List>
       )}
     </Box>
-  )
+  );
 };
 
 export default Events;

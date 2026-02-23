@@ -39,7 +39,6 @@ testapp.use(express.json());
 testapp.use('/api/auth', authRouter);
 const request = supertest(testapp);
 
-
 describe('Unit tests for auth router', () => {
   // Clear all mocks after each test
   afterEach(() => {
@@ -194,20 +193,19 @@ describe('Unit tests for auth router', () => {
         res.clearCookie(token);
         res.status(200).send('Successfully logged out.');
       });
-  
+
       // Mock POST API call
       const response = await request.post('/api/auth/logout').set('Cookie', token);
-  
+
       // Tests
       expect(AuthUtil.verifyCookie).toHaveBeenCalled();
       expect(UserController.logout).toHaveBeenCalled();
       expect(response.headers['set-cookie'][0]).toMatch(/token=;/);
       expect(response.status).toBe(200);
       expect(response.text).toBe('Successfully logged out.');
-  
+
       // Marks completion of tests
       done();
     });
   });
-
 });

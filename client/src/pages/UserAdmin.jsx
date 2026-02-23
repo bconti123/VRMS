@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import '../sass/UserAdmin.scss';
-import EditUsers from '../components/user-admin/EditUsers';
-import UserApiService from '../api/UserApiService';
 import ProjectApiService from '../api/ProjectApiService';
+import UserApiService from '../api/UserApiService';
+import EditUsers from '../components/user-admin/EditUsers';
 import UserManagement from '../components/user-admin/UserManagement';
 
 const UserAdmin = () => {
@@ -24,7 +24,7 @@ const UserAdmin = () => {
       await userApiService.updateUserDbProjects(user, projectId, action);
       fetchUsers();
     },
-    [userApiService, fetchUsers]
+    [userApiService, fetchUsers],
   );
 
   const updateUserActiveStatus = useCallback(
@@ -32,7 +32,7 @@ const UserAdmin = () => {
       await userApiService.updateUserDbIsActive(user, isActive);
       fetchUsers();
     },
-    [userApiService, fetchUsers]
+    [userApiService, fetchUsers],
   );
 
   // Update user's access level (admin/user)
@@ -41,7 +41,7 @@ const UserAdmin = () => {
       await userApiService.updateUserAccessLevel(user, newAccessLevel);
       fetchUsers();
     },
-    [userApiService, fetchUsers]
+    [userApiService, fetchUsers],
   );
 
   const fetchProjects = useCallback(async () => {

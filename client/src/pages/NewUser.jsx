@@ -1,5 +1,5 @@
+import { Box, Container, Typography } from '@mui/material';
 import React, { useState, useEffect } from 'react';
-import { Container, Typography, Box } from '@mui/material';
 import ReadyEvents from '../components/ReadyEvents';
 
 const NewUser = (props) => {

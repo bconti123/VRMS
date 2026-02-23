@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import '../../sass/ManageProjects.scss';
+import { Box, Button, Modal } from '@mui/material';
 import { useSnackbar } from '../../context/snackbarContext';
 import EditableMeeting from './editableMeeting';
-import { findNextOccuranceOfDay } from './utilities/findNextDayOccuranceOfDay';
 import { addDurationToTime } from './utilities/addDurationToTime';
+import { findNextOccuranceOfDay } from './utilities/findNextDayOccuranceOfDay';
 import { timeConvertFromForm } from './utilities/timeConvertFromForm';
 import validateEventForm from './utilities/validateEventForm';
-import { Box, Button, Modal } from '@mui/material';
 
 // This component displays current meeting times for selected project and offers the option to edit those times.
 const EditMeetingTimes = ({

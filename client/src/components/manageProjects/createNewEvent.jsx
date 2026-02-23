@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
 import { useSnackbar } from '../../context/snackbarContext';
 import '../../sass/ManageProjects.scss';
-import { findNextOccuranceOfDay } from './utilities/findNextDayOccuranceOfDay';
+import EventForm from './eventForm';
 import { addDurationToTime } from './utilities/addDurationToTime';
+import { findNextOccuranceOfDay } from './utilities/findNextDayOccuranceOfDay';
 import { timeConvertFromForm } from './utilities/timeConvertFromForm';
 import validateEventForm from './utilities/validateEventForm';
-import EventForm from './eventForm';
 
-const CreateNewEvent = ({
-  projectToEdit,
-  projectID,
-  createNewRecurringEvent,
-  setIsCreateNew,
-}) => {
+const CreateNewEvent = ({ projectToEdit, projectID, createNewRecurringEvent, setIsCreateNew }) => {
   // These are the initial form values
   const initialFormValues = {
     name: '',

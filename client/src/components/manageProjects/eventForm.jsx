@@ -1,14 +1,7 @@
+import { Box, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import React from 'react';
 import { createClockHours } from '../../utils/createClockHours';
 import validateEventForm from './utilities/validateEventForm';
-import {
-  Box,
-  TextField,
-  MenuItem,
-  Select,
-  FormControl,
-  InputLabel,
-} from '@mui/material';
 import '../../sass/ManageProjects.scss';
 
 const EventForm = ({
@@ -134,11 +127,7 @@ const EventForm = ({
         <FormControl fullWidth>
           <TextField
             required
-            helperText={
-              formErrors?.videoConferenceLink
-                ? formErrors?.videoConferenceLink
-                : ''
-            }
+            helperText={formErrors?.videoConferenceLink ? formErrors?.videoConferenceLink : ''}
             error={formErrors?.videoConferenceLink}
             id="Meeting URL"
             label="Meeting URL"

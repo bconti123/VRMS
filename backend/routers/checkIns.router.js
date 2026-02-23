@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
 const { CheckIn } = require('../models/checkIn.model');
@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get("/:id", (req, res) => {
+router.get('/:id', (req, res) => {
   CheckIn.findById(req.params.id)
     .then((checkIn) => {
       res.status(200).send(checkIn);
@@ -26,11 +26,11 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.get("/findEvent/:id", (req, res) => {
-  CheckIn.find({ eventId: req.params.id, userId: { $ne: "undefined" } })
+router.get('/findEvent/:id', (req, res) => {
+  CheckIn.find({ eventId: req.params.id, userId: { $ne: 'undefined' } })
     .populate({
-      path: "userId",
-      model: "User",
+      path: 'userId',
+      model: 'User',
     })
     .then((checkIns) => {
       res.status(200).send(checkIns);
@@ -41,7 +41,7 @@ router.get("/findEvent/:id", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post('/', (req, res) => {
   CheckIn.create(req.body)
     .then((checkIn) => {
       res.sendStatus(201);

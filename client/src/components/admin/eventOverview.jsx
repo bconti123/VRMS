@@ -1,20 +1,14 @@
-import React from "react";
+import React from 'react';
 
-const eventOverview = props => {
-  let eventsByType = [];
-  for (let key in props.chartTypes) {
+const eventOverview = (props) => {
+  const eventsByType = [];
+  for (const key in props.chartTypes) {
     eventsByType.push(key);
   }
 
   return (
     <div className="header-admin-dashboard">
-
-      <form
-        className="form-stats"
-        autoComplete="off"
-        onSubmit={e => e.preventDefault()}
-      >
-
+      <form className="form-stats" autoComplete="off" onSubmit={(e) => e.preventDefault()}>
         <div className="stats-form-row">
           <div className="stats-form-input-text">
             <div className="stat-select">

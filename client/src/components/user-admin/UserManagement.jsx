@@ -1,15 +1,15 @@
+import PersonIcon from '@mui/icons-material/Person';
 import {
   Box,
   Button,
   ButtonGroup,
-  TextField,
-  Typography,
   List,
   ListItem,
   ListItemButton,
+  TextField,
+  Typography,
 } from '@mui/material';
 import useAuth from '../../hooks/useAuth';
-import PersonIcon from '@mui/icons-material/Person';
 import '../../sass/UserAdmin.scss';
 import { useSearchText } from '../../context/searchContext';
 
@@ -25,9 +25,7 @@ const UserManagement = ({ users, setUserToEdit }) => {
 
   // Swaps the buttons and displayed panels for the search results, by email or by name
   const buttonSwap = () =>
-    searchResultType === 'email'
-      ? setSearchResultType('name')
-      : setSearchResultType('email');
+    searchResultType === 'email' ? setSearchResultType('name') : setSearchResultType('email');
 
   // Handle change on input in search form
   const handleChange = (event) => {
@@ -40,22 +38,18 @@ const UserManagement = ({ users, setUserToEdit }) => {
     searchResults =
       searchResultType === 'email'
         ? Object.values(users)
-            .filter((user) =>
-              user.email
-                ?.toLowerCase()
-                .includes(searchText.toLowerCase().trim())
-            )
+            .filter((user) => user.email?.toLowerCase().includes(searchText.toLowerCase().trim()))
             .sort((a, b) => a.email.localeCompare(b.email))
         : Object.values(users)
             .filter((user) =>
               `${user.name?.firstName} ${user.name?.lastName}`
                 .toLowerCase()
-                .includes(searchText.toLowerCase().trim())
+                .includes(searchText.toLowerCase().trim()),
             )
             .sort((a, b) =>
               a.name?.firstName
                 .concat(a.name?.lastName)
-                .localeCompare(b.name?.firstName.concat(b.name?.lastName))
+                .localeCompare(b.name?.firstName.concat(b.name?.lastName)),
             );
   }
   return (
@@ -141,9 +135,27 @@ const UserManagement = ({ users, setUserToEdit }) => {
                       type="button"
                       onClick={() => setUserToEdit(u)}
                     >
-                      {searchResultType === 'name'
-                        ?  (u._id === auth.user._id) ? (<><PersonIcon /><b>{u.name?.firstName} {u.name?.lastName} ( {u.email} )</b></>) : `${u.name?.firstName} ${u.name?.lastName} ( ${u.email} )`
-                        :  (u._id === auth.user._id) ? (<><PersonIcon /><b>{u.email} ( {u.name?.firstName} {u.name?.lastName} )</b></>) : `${u.email} ( ${u.name?.firstName} ${u.name?.lastName} )`}
+                      {searchResultType === 'name' ? (
+                        u._id === auth.user._id ? (
+                          <>
+                            <PersonIcon />
+                            <b>
+                              {u.name?.firstName} {u.name?.lastName} ( {u.email} )
+                            </b>
+                          </>
+                        ) : (
+                          `${u.name?.firstName} ${u.name?.lastName} ( ${u.email} )`
+                        )
+                      ) : u._id === auth.user._id ? (
+                        <>
+                          <PersonIcon />
+                          <b>
+                            {u.email} ( {u.name?.firstName} {u.name?.lastName} )
+                          </b>
+                        </>
+                      ) : (
+                        `${u.email} ( ${u.name?.firstName} ${u.name?.lastName} )`
+                      )}
                     </ListItemButton>
                   </ListItem>
                 );

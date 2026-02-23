@@ -8,9 +8,8 @@ setupDB('api-auth');
 const { CONFIG_AUTH } = require('../config/');
 const { User } = require('../models');
 
-
 // Create mock for EmailController
-const sendMailMock = jest.fn()
+const sendMailMock = jest.fn();
 jest.mock('../controllers/email.controller');
 const mockEmailController = require('../controllers/email.controller');
 mockEmailController.sendLoginLink.mockReturnValue({ sendMail: sendMailMock });
@@ -53,7 +52,6 @@ describe('CREATE User', () => {
     const APIData = response.body[0];
     expect(APIData.name.firstName).toBe(submittedData.name.firstName);
     expect(APIData.name.lastName).toBe(submittedData.name.lastName);
-
   });
 
   test('Create user with POST to /auth/signup', async () => {
@@ -64,10 +62,7 @@ describe('CREATE User', () => {
       email: 'test@test.com',
     };
 
-    const res = await request
-      .post('/api/auth/signup')
-      .send(goodUserData)
-      .set(headers);
+    const res = await request.post('/api/auth/signup').send(goodUserData).set(headers);
 
     expect(res.status).toBe(201);
   });
@@ -82,10 +77,7 @@ describe('SIGNUP Validation', () => {
       email: 'test@test.com',
     };
 
-     const res = await request
-      .post('/api/auth/signup')
-      .send(badUserData)
-      .set(headers);
+    const res = await request.post('/api/auth/signup').send(badUserData).set(headers);
 
     expect(res.status).toBe(403);
     const errorMessage = JSON.parse(res.text);
@@ -108,19 +100,12 @@ describe('SIGNUP Validation', () => {
       email: 'test@test.com',
     };
 
-    await request
-      .post('/api/auth/signup')
-      .send(userOneWithSameEmail)
-      .set(headers);
+    await request.post('/api/auth/signup').send(userOneWithSameEmail).set(headers);
 
-    const res2 = await request
-      .post('/api/auth/signup')
-      .send(userTwoWithSameEmail)
-      .set(headers);
+    const res2 = await request.post('/api/auth/signup').send(userTwoWithSameEmail).set(headers);
 
     expect(res2.status).toBe(400);
   });
-
 });
 
 describe('SIGNIN User', () => {
@@ -185,10 +170,7 @@ describe('SIGNIN Validation', () => {
     await User.create(notValidEmailPayload);
 
     // POST to the DB with that same data.
-    const res = await request
-      .post('/api/auth/signin')
-      .send(notValidEmailPayload)
-      .set(headers);
+    const res = await request.post('/api/auth/signin').send(notValidEmailPayload).set(headers);
 
     expect(res.status).toBe(403);
     const errorMessage = JSON.parse(res.text);
@@ -202,4 +184,4 @@ describe('SIGNIN Validation', () => {
       },
     ]);
   });
-})
+});

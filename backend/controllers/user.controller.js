@@ -11,7 +11,7 @@ const expectedHeader = process.env.CUSTOM_REQUEST_HEADER;
 const UserController = {};
 
 // Get list of Users with GET
-UserController.user_list = async function (req, res) {
+UserController.user_list = async (req, res) => {
   const { headers } = req;
   const { query } = req;
 
@@ -28,7 +28,7 @@ UserController.user_list = async function (req, res) {
   }
 };
 
-UserController.user_by_email = async function (req, res) {
+UserController.user_by_email = async (req, res) => {
   const { headers } = req;
   const { email } = req.params;
 
@@ -48,7 +48,7 @@ UserController.user_by_email = async function (req, res) {
 };
 
 // Get list of Users with accessLevel 'admin' or 'superadmin' with GET
-UserController.admin_list = async function (req, res) {
+UserController.admin_list = async (req, res) => {
   const { headers } = req;
 
   if (headers['x-customrequired-header'] !== expectedHeader) {
@@ -64,7 +64,7 @@ UserController.admin_list = async function (req, res) {
   }
 };
 
-UserController.projectManager_list = async function (req, res) {
+UserController.projectManager_list = async (req, res) => {
   const { headers } = req;
 
   if (headers['x-customrequired-header'] !== expectedHeader) {
@@ -114,7 +114,7 @@ UserController.projectManager_list = async function (req, res) {
 };
 
 // Get User by id with GET
-UserController.user_by_id = async function (req, res) {
+UserController.user_by_id = async (req, res) => {
   const { headers } = req;
   const { UserId } = req.params;
 
@@ -132,7 +132,7 @@ UserController.user_by_id = async function (req, res) {
 };
 
 // Add User with POST
-UserController.create = async function (req, res) {
+UserController.create = async (req, res) => {
   const { headers } = req;
 
   if (headers['x-customrequired-header'] !== expectedHeader) {
@@ -158,7 +158,7 @@ UserController.create = async function (req, res) {
 };
 
 // Update User with PATCH
-UserController.update = async function (req, res) {
+UserController.update = async (req, res) => {
   const { headers } = req;
   const { UserId } = req.params;
 
@@ -176,7 +176,7 @@ UserController.update = async function (req, res) {
 };
 
 // Add User with POST
-UserController.delete = async function (req, res) {
+UserController.delete = async (req, res) => {
   const { headers } = req;
   const { UserId } = req.params;
 
@@ -204,7 +204,7 @@ function generateAccessToken(user, auth_origin) {
   );
 }
 
-UserController.createUser = function (req, res) {
+UserController.createUser = (req, res) => {
   const { firstName, lastName, email } = req.body;
   const { origin } = req.headers;
 
@@ -230,7 +230,7 @@ UserController.createUser = function (req, res) {
   EmailController.sendLoginLink(req.body.email, user.name.firstName, jsonToken, req.cookie, origin);
 };
 
-UserController.signin = function (req, res) {
+UserController.signin = (req, res) => {
   const { email, auth_origin } = req.body;
   const { origin } = req.headers;
 
@@ -257,7 +257,7 @@ UserController.signin = function (req, res) {
     });
 };
 
-UserController.verifySignIn = async function (req, res) {
+UserController.verifySignIn = async (req, res) => {
   let token = req.headers['x-access-token'] || req.headers['authorization'];
   if (token.startsWith('Bearer ')) {
     // Remove Bearer from string
@@ -275,17 +275,16 @@ UserController.verifySignIn = async function (req, res) {
   }
 };
 
-UserController.verifyMe = async function (req, res) {
+UserController.verifyMe = async (req, res) => {
   const user = await User.findById(req.userId);
   return res.status(200).send(user);
 };
 
-UserController.logout = async function (req, res) {
-  return res.clearCookie('token').status(200).send('Successfully logged out.');
-};
+UserController.logout = async (req, res) =>
+  res.clearCookie('token').status(200).send('Successfully logged out.');
 
 // Update user's managedProjects
-UserController.updateManagedProjects = async function (req, res) {
+UserController.updateManagedProjects = async (req, res) => {
   const { headers } = req;
   const { UserId } = req.params;
   const { action, projectId } = req.body; // action - 'add' or 'remove'
@@ -327,7 +326,7 @@ UserController.updateManagedProjects = async function (req, res) {
   }
 };
 
-UserController.bulkUpdateManagedProjects = async function (req, res) {
+UserController.bulkUpdateManagedProjects = async (req, res) => {
   const { bulkOps } = req.body;
 
   // Convert string IDs to ObjectId in bulkOps
