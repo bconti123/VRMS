@@ -5,8 +5,8 @@
 - Total diagnostics: 326
 - Errors: 155
 - Warnings: 171
-- Fixable diagnostics (tagged): 221
-- Non-fixable diagnostics: 105
+- Fixable diagnostics (tagged): 219
+- Non-fixable diagnostics: 107
 - Files with diagnostics: 101
 
 ## By Severity
@@ -16,30 +16,30 @@
 
 ## By Domain
 
-- lint: 325
-- format: 1
+- lint: 324
+- format: 2
 
 ## Top Categories (first 20)
 
 - lint/correctness/noUnusedVariables: 148
 - lint/style/useTemplate: 25
-- lint/complexity/noForEach: 23
+- lint/complexity/noForEach: 24
 - lint/correctness/useExhaustiveDependencies: 23
 - lint/suspicious/noArrayIndexKey: 16
 - lint/style/noUselessElse: 15
 - lint/complexity/useOptionalChain: 13
-- lint/style/useNodejsImportProtocol: 9
 - lint/style/useSelfClosingElements: 9
 - lint/style/noVar: 7
+- lint/style/useNodejsImportProtocol: 7
 - lint/suspicious/noThenProperty: 7
 - lint/a11y/useButtonType: 5
 - lint/suspicious/noAssignInExpressions: 5
 - lint/complexity/useLiteralKeys: 4
 - lint/a11y/useKeyWithClickEvents: 3
+- format: 2
 - lint/a11y/noSvgWithoutTitle: 2
 - lint/a11y/useIframeTitle: 2
 - lint/suspicious/noDuplicateObjectKeys: 2
-- format: 1
 - lint/a11y/noLabelWithoutControl: 1
 
 ## Top Files (first 25)
