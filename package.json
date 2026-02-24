@@ -9,6 +9,7 @@
     "lint": "lint-staged",
     "check": "lint-staged",
     "check:all": "biome check --write .",
+    "lint:audit": "node scripts/biome-lint-audit.mjs",
     "dev:api": "cd backend && npm run dev",
     "dev:client": "cd client && npm run start",
     "dev": "dotenv -e backend/.env -e client/.env concurrently \"npm run dev:api\" \"npm run dev:client\"",

@@ -1,0 +1,91 @@
+{
+  "command": "node_modules/.bin/biome check . --reporter=json",
+  "exitCode": 1,
+  "totals": {
+    "diagnostics": 326,
+    "errors": 155,
+    "warnings": 171,
+    "fixableDiagnostics": 221,
+    "nonFixableDiagnostics": 105,
+    "filesWithDiagnostics": 101
+  },
+  "biomeSummary": {
+    "changed": 0,
+    "unchanged": 216,
+    "matches": 0,
+    "duration": {
+      "secs": 0,
+      "nanos": 60305765
+    },
+    "errors": 155,
+    "warnings": 171,
+    "skipped": 0,
+    "suggestedFixesSkipped": 0,
+    "diagnosticsNotPrinted": 0
+  },
+  "counts": {
+    "bySeverity": {
+      "warning": 171,
+      "error": 155
+    },
+    "byDomain": {
+      "lint": 325,
+      "format": 1
+    },
+    "byCategory": {
+      "lint/correctness/noUnusedVariables": 148,
+      "lint/style/useTemplate": 25,
+      "lint/complexity/noForEach": 23,
+      "lint/correctness/useExhaustiveDependencies": 23,
+      "lint/suspicious/noArrayIndexKey": 16,
+      "lint/style/noUselessElse": 15,
+      "lint/complexity/useOptionalChain": 13,
+      "lint/style/useNodejsImportProtocol": 9,
+      "lint/style/useSelfClosingElements": 9,
+      "lint/style/noVar": 7,
+      "lint/suspicious/noThenProperty": 7,
+      "lint/a11y/useButtonType": 5,
+      "lint/suspicious/noAssignInExpressions": 5,
+      "lint/complexity/useLiteralKeys": 4,
+      "lint/a11y/useKeyWithClickEvents": 3,
+      "lint/a11y/noSvgWithoutTitle": 2,
+      "lint/a11y/useIframeTitle": 2,
+      "lint/suspicious/noDuplicateObjectKeys": 2,
+      "format": 1,
+      "lint/a11y/noLabelWithoutControl": 1,
+      "lint/complexity/noUselessFragments": 1,
+      "lint/complexity/noUselessTernary": 1,
+      "lint/style/useSingleVarDeclarator": 1,
+      "lint/suspicious/noFallthroughSwitchClause": 1,
+      "lint/suspicious/noGlobalIsNan": 1,
+      "lint/suspicious/noPrototypeBuiltins": 1
+    },
+    "topFiles": {
+      "./backend/routers/auth.router.test.js": 17,
+      "./backend/routers/grantpermission.router.js": 17,
+      "./backend/routers/slack.router.js": 12,
+      "./client/src/components/admin/dashboard/index.jsx": 11,
+      "./client/src/pages/ProjectLeaderDashboard.jsx": 11,
+      "./backend/routers/users.router.test.js": 10,
+      "./client/src/pages/CheckInForm.jsx": 10,
+      "./backend/routers/projects.router.test.js": 9,
+      "./client/src/components/Leaderboard.jsx": 9,
+      "./backend/workers/slackbot.js": 8,
+      "./client/src/components/dashboard/AttendeeTable.jsx": 8,
+      "./client/src/components/dashboard/RosterTable.jsx": 8,
+      "./backend/controllers/project.controller.js": 7,
+      "./backend/routers/events.router.test.js": 7,
+      "./backend/scripts/deleteProject/displays.js": 7,
+      "./client/src/components/user-admin/UserPermissionSearch.jsx": 7,
+      "./backend/routers/recurringEvents.router.test.js": 6,
+      "./backend/app.js": 5,
+      "./backend/controllers/event.controller.js": 5,
+      "./backend/routers/projectTeamMembers.router.test.js": 5,
+      "./client/src/components/admin/donutChart.jsx": 5,
+      "./client/src/components/DashboardUsers.jsx": 5,
+      "./backend/controllers/user.controller.js": 4,
+      "./client/src/components/admin/donutChartContainer.jsx": 4,
+      "./client/src/components/manageProjects/editPMs/editProjectMembers.jsx": 4
+    }
+  }
+}
