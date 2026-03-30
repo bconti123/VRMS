@@ -1,0 +1,1 @@
+{"v":1,"f":{"backend/controllers/user.controller.js":[{"s":"agent|codex(gpt-5.4)","l":[]},{"s":"operator","l":[202]}],"backend/routers/projects.router.js":[{"s":"agent|codex(gpt-5.4)","l":[]},{"s":"operator","l":["5-6",29]}],"client/src/context/authContext.jsx":[{"s":"operator","l":[61,69]}]}}
