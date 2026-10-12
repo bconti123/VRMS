@@ -1,0 +1,1 @@
+{"v":1,"f":{"backend/routers/checkUser.router.js":[{"s":"operator","l":[20,52]},{"s":"operator","l":[53]},{"s":"unknown","l":["8-19","21-26","31-34","37-41","43-51",55]},{"s":"unknown","l":[42]}],"backend/routers/checkUser.router.test.js":[{"s":"operator","l":[69,77]},{"s":"unknown","l":["57-68","70-76","78-86"]},{"s":"unknown","l":[1,"7-8"]}]}}
